@@ -1,0 +1,52 @@
+{{ form_start(form0) }}
+<script src="{{  asset('jquery-3.2.1.min.js') }}"></script>
+
+
+<script type="text/javascript">
+    $(function(){
+        $("#espritentreaide_spottedbundle_publication_descP").keyup(
+            function(){
+                abcd =  $("#espritentreaide_spottedbundle_publication_descP").val();
+                DATA = 's='+abcd;
+                //alert(abcd);
+                $.ajax({
+
+                    url : '{{ path("_recherche_spotted_ajax") }}',
+                    data:DATA,
+                    beforeSend:function(){
+
+                        alert('before send');
+                    },
+                    success : function(response){
+                        $("#a5").html(
+                            "<table id='tab' border='1'>" +
+                            "        <tr>\n" +
+                            "            <th> image </th>\n" +
+
+
+                            "\n" +
+                            "</tr>" +
+                            "" +
+                            "</table>"
+                        );
+                        $.each(response,function(k,el){
+
+                            $('#a5').append(
+                                "<div>" +
+                                "<span>"+el.titreP+"</span>"+
+
+                                "</div>"
+                            )
+                        })
+
+
+                    },
+                })
+            }
+
+        );
+    });
+</script>
+
+{{ form_end(form0) }}
+<div id="a5">.. </div>

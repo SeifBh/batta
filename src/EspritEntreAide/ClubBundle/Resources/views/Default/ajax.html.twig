@@ -1,0 +1,49 @@
+
+{{ form_start(form) }}
+
+<script src="{{ asset('jquery-3.2.1.min.js') }}"></script>
+
+<script type="text/javascript">
+    $(function(){
+        $("#espritentreaide_clubbundle_club_nomC").keyup(
+            function(){
+                abcd =  $("#espritentreaide_clubbundle_club_nomC").val();
+                DATA = 's='+abcd;
+                //alert(abcd);
+                $.ajax({
+
+                    url : '{{ path("club_affiche") }}',
+                    data:DATA,
+
+                    success : function(response){
+                        $("#a5").html(
+                            "<table id='tab' border='1'>" +
+                            "        <tr>\n" +
+                            "            <th> nom </th>\n" +
+
+
+                            "\n" +
+                            "</tr>" +
+                            "" +
+                            "</table>"
+                        );
+                        $.each(response,function(k,el){
+                            $('#a5').append(
+                                "<div>" +
+                                "<span>"+el.nomC5+"</span>"+
+
+                                "</div>"
+                            )
+                        })
+
+
+                    },
+                })
+            }
+
+        );
+    });
+</script>
+
+{{ form_end(form) }}
+<div id="a5">.. </div>

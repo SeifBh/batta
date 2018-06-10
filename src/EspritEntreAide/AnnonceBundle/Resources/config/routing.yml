@@ -1,0 +1,52 @@
+annonce_homepage:
+    path:     /
+    defaults: { _controller: AnnonceBundle:Default:index }
+
+
+_affiche:
+    path:     /affiche
+    defaults: { _controller: AnnonceBundle:Default:affiche }
+
+
+
+
+_annonce_ajouter:
+    path:     /ajouterAnnonce
+    defaults: { _controller: AnnonceBundle:Default:ajouterAnnonce }
+
+
+_annonce_chercher:
+    path:     /chercherAnnonce
+    defaults: { _controller: AnnonceBundle:Default:chercherAnnonce }
+
+_annonce_chercher1:
+    path:     /chercherAnnonceSansAjax
+    defaults: { _controller: AnnonceBundle:Default:ChercherSansAjax}
+
+_annonce_supprimer:
+    path:     /Delete/{id}
+    defaults: { _controller: AnnonceBundle:Default:supprimerAnnonce }
+
+_annonce_modifier:
+    path:     /modifierAnnonce{id}
+    defaults: { _controller: AnnonceBundle:Default:modifierAnnonce }
+
+
+
+
+_annonce_ajouter_admin:
+    path:     /ajouterAnnonceAdmin
+    defaults: { _controller: AnnonceBundle:Default:ajouterAnnonceAdmin }
+
+annonce_homepage_admin:
+    path:     /afficherAnnonceAdmin
+    defaults: { _controller: AnnonceBundle:Default:indexAdmin }
+
+
+_annonce_supprimer_admin:
+    path:     /DeleteAdmin{id}
+    defaults: { _controller: AnnonceBundle:Default:supprimerAnnonceAdmin }
+
+_annonce_modifier_admin:
+    path:     /modifierAnnonceAdmin{id}
+    defaults: { _controller: AnnonceBundle:Default:modifierAnnonceAdmin }

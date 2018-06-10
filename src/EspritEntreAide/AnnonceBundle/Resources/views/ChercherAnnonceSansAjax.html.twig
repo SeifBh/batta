@@ -1,0 +1,146 @@
+{% extends ":default:test.html.twig" %}
+
+
+{% block title %}Annonces{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #336699; }
+        .success {
+            background-color: #ddffdd;
+            border-left: 6px solid #4CAF50;
+        }
+        .warning {
+            background-color: #ffec00;
+            border-left: 6px solid #ff9800;
+        }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    <div id="mySidenav" class="sidenav">
+        <link rel="stylesheet" href="{{ asset('css/style_indexAnnonce.css') }}">
+        <a id="Ajouter" href={{ path('_annonce_ajouter')}}>Ajouter une annonce</a>
+        <a  id="Chercher" href={{ path('annonce_homepage')}}>Liste des annonces</a>
+    </div>
+    <div class="big-div">
+        <h1><a href="{{ path('_annonce_chercher1') }}">Chercher une annonce</a></h1>
+    </div>
+    {% if (is_granted('ROLE_RESPONSABLE_SUPER_ADMIN'))
+        or(is_granted('ROLE_SUPER_ADMIN'))
+        or(is_granted('ROLE_ADMIN'))
+        or(is_granted('ROLE_ETUDIANT'))
+        or(is_granted('ROLE_ENSEIGNANT'))
+        or(is_granted('ROLE_RESPONSABLE_CLUB'))
+        or(is_granted('ROLE_RESPONSABLE_STORE'))
+    %}
+
+        <p class="important">
+
+        </p>
+        <div class="">
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+                <div class="form-group has-feedback">
+                    {{ form_label(form.dateA,'Titre') }}
+                    {{ form_errors(form.titreA) }}
+                    {{ form_widget(form.titreA,{'attr': {'class': 'form-control','placeholder': "titre de l'annonce"}}) }}
+                    <span class="glyphicon  form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    {{ form_label(form.dateA,'Date') }}
+                    {{ form_errors(form.dateA) }}
+                    {{ form_widget(form.dateA) }}
+                    <span class="glyphicon form-control-feedback"></span>
+                </div>
+                <div class="checkbox icheck">
+                    {{ form_widget(form.Chercher,{'attr': {'class': 'btn info'}}) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-8">
+                {% for a in annonce %}
+
+                    <div class="con2">
+                        <link rel="stylesheet" href="{{ asset('css/style_chercherAnnonce.css') }}">
+                        <table>
+                            <tr>
+                                <th>
+                                     {% if a.etat == "resolue" %}
+                                    <div class="success">
+                                        <p><strong>Resolue!</strong></p>
+                                    </div>
+                                    {% if a.categorieA == "collocation" %}
+                                        <img src="{{ asset('images/ImageAnnonce/maison.png') }}" alt="Avatar" style="width:80px">
+                                    {% endif %}
+                                    {% if a.categorieA == "permutation" %}
+                                        <img src="{{ asset('images/ImageAnnonce/vaVient.png') }}" alt="Avatar" style="width:80px">
+                                    {% endif %}
+                                    {% if a.categorieA == "covoiturage" %}
+                                        <img src="{{ asset('images/ImageAnnonce/voiture.png') }}" alt="Avatar" style="width:80px">
+                                    {% endif %}
+                                    {% if a.categorieA == "ObjetTrouve" %}
+                                        <img src="{{ asset('images/ImageAnnonce/question.png') }}" alt="Avatar" style="width:80px">
+                                    {% endif %}
+                                    {% if a.categorieA == "ObjetPerdu" %}
+                                        <img src="{{ asset('images/ImageAnnonce/question.png') }}" alt="Avatar" style="width:80px">
+                                    {% endif %}
+                                    <p><span>{{ a.idUser}}</span><b> {{ a.titreA}}</p></b>
+                                    <p>{{ a.descA}}</p>
+                                    Contacter moi : {{ a.numTel }}
+                                     {% endif %}
+
+                                    {% if a.etat == "nonResolue" %}
+                                        <div class="warning">
+                                            <p><strong>Non Resolue !!</strong></p>
+                                        </div>
+                                        {% if a.categorieA == "collocation" %}
+                                            <img src="{{ asset('images/ImageAnnonce/maison.png') }}" alt="Avatar" style="width:80px">
+                                        {% endif %}
+                                        {% if a.categorieA == "permutation" %}
+                                            <img src="{{ asset('images/ImageAnnonce/vaVient.png') }}" alt="Avatar" style="width:80px">
+                                        {% endif %}
+                                        {% if a.categorieA == "covoiturage" %}
+                                            <img src="{{ asset('images/ImageAnnonce/voiture.png') }}" alt="Avatar" style="width:80px">
+                                        {% endif %}
+                                        {% if a.categorieA == "ObjetTrouve" %}
+                                            <img src="{{ asset('images/ImageAnnonce/question.png') }}" alt="Avatar" style="width:80px">
+                                        {% endif %}
+                                        {% if a.categorieA == "ObjetPerdu" %}
+                                            <img src="{{ asset('images/ImageAnnonce/question.png') }}" alt="Avatar" style="width:80px">
+                                        {% endif %}
+                                        <p><span>{{ a.idUser}}</span><b> {{ a.titreA}}</p></b>
+                                        <p>{{ a.descA}}</p>
+                                        Contacter moi : {{ a.numTel }}
+                                    {% endif %}
+                                </th>
+                                <th>
+                                    {% if app.user == a.idUser %}<a href="{{ path('_annonce_supprimer',{'id':a.id}) }}" class="btn danger">Supprimer</a>{% endif %}
+                                    {% if app.user == a.idUser %}<a href="{{ path('_annonce_modifier',{'id':a.id}) }}" class="btn success">Modifier</a>{% endif %}
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+
+                {% endfor %}
+            </div>
+
+            <div class="col-xs-4" >
+            </div>
+
+
+        </div>
+
+    {% else %}
+        <center><h1>You should <a href="{{ path('fos_user_security_login') }}" >Login</a> or <a href="{{ path('fos_user_registration_register') }}">Register</a> :) </h1></center>
+    {% endif %}
+{% endblock %}

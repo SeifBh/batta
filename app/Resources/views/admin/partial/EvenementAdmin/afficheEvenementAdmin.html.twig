@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "admin/partial/header.html.twig" %}
+</head>
+
+<body class="no-skin">
+{% include ":admin/partial/EvenementAdmin:afficherEvenementBodyAdmin.html.twig" %}
+
+<script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+
+<script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+<script src="{{ asset('js/jquery-ui-1.9.2.custom.min.js') }}"></script>
+<script src="{{ asset('js/jquery-migrate-1.2.1.min.js') }}"></script>
+
+
+
+
+
+<!--data table-->
+<script type="text/javascript" src="{{ asset('js/data-tables/jquery.dataTables.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/data-tables/DT_bootstrap.js') }}"></script>
+
+<!--script for editable table-->
+<script src="{{ asset('js/editable-table.js') }}"></script>
+<script>
+    jQuery(document).ready(function() {
+        EditableTable.init();
+    });
+</script>
+</body>
+</html>

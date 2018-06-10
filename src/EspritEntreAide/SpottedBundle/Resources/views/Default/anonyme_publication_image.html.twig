@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+   {{ include('@Spotted/Default/cssfile.html.twig') }}
+</head>
+
+<body>
+
+
+<nav class="navbar-background">
+    <div class="nav-wrapper">
+        <a href="{{ path('app') }}" class="brand-logo navbar-brand">Esprit >> SPOTTED</a>
+
+        <ul id="nav-mobile" class="left hide-on-med-and-down" >
+            <li style="margin-right:1.5rem;">
+                {{ form_start(form_recherche_ajax) }}
+
+
+                {{ form_end(form_recherche_ajax) }}
+            </li>
+            <li><a class='dropdown-button btn drop' href='#' data-activates='dropdown1'><i class="material-icons">more_vert</i></a></li>
+        </ul>
+    </div>
+</nav>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $( function() {
+
+        var availableTags = [];
+
+        {% for s in listspotted %}
+        availableTags.push("{{ s.tags }}");
+
+        {% endfor %}
+        $( function() {
+
+            $( "#tags" ).autocomplete({
+                source: availableTags
+            });
+        } );
+    } );
+</script>
+<!-- Content Starts here -->
+
+<div class="row" style="margin-top:3rem;width:90%;">
+    <div class="col s12 m3 l3">
+        <div>
+            <div class="card profile-wall"></div>
+            <div style="display:grid;">
+                <div class="avatar s70 avatar-tile identicon" style="background-color: #F3E5F5; color: #555">
+                    {{ app.user.nom|first|upper }}
+                </div>
+            </div>
+            <div class="card profile-matter">
+                <div class="text-profile">
+                    <h5 style="font-size:15px;font-weight:900;">{{ app.user.nom }} {{ app.user.prenom }}</h5>
+                    <h5 style="font-size:10px;font-weight:900;color:#ccc">Etudiant </h5>
+                    <hr class="line">
+                    <div class="spec">
+                        <a href="#" style="color:#525252;font-size:10px;flex-grow:1;"><strong class="followers-num">
+                                {{ nbr_image }}
+                            </strong></br>Photos</a>
+                        <a href="#" style="color:#525252;font-size:10px;flex-grow:1;"><strong class="followers-num">
+                                {{ nbr_publication }}
+                            </strong></br>Publications</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col s12 m6 l6">
+
+
+
+
+
+
+
+
+
+
+
+        <div class="card add-post" id="zouz">
+
+            <div class="nosmid r1">
+
+                <div class="HBTmetromenu">
+
+
+                    <div data-navid="om-nav" class="tile-bt-large solid-red shadow-red margin-5 floatleft HBTMetroMenu" id="ps">
+                        <a href="#" class="gradient">
+                            <img src="{{ asset('images/post_icon.png') }}" alt="" />
+                            <span class="light-text">Publication</span>
+                        </a>
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+            <div class="nosmid l1">
+                <div class="HBTmetromenu">
+
+
+                    <div data-navid="om-nav" class="tile-bt-large solid-blue shadow-blue margin-5 floatleft HBTMetroMenu" id="pi">
+                        <a href="#" class="gradient">
+                            <img src="https://lh4.googleusercontent.com/-oCxQ-kYEH18/VEbJZJHAT6I/AAAAAAAAHmw/Y7HxxDZ9Kg0/s128-no/foto.png" alt="" />
+                            <span class="light-text">Photo</span>
+                        </a>
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+        <div style="color:red !important">{{ error_taken }} </div>
+
+        <div class="card add-post p1" id="p1">
+
+            {{ form_errors(form_ajout_publication_secrete) }}
+            <div class="ui-widget">
+                <div class="space-4"></div>
+
+
+            </div>
+            {{ form_start(form_ajout_publication_secrete) }}
+            {{ form_errors(form_ajout_publication_secrete) }}
+
+            {{ form_end(form_ajout_publication_secrete) }}
+            <a href="#" class="" id="ps1"><i class="material-icons left btn-image" style="font-size: 22px;margin-right: 6px;">camera_alt</i></a>
+        </div>
+        <div class="card add-post p2" id="p2">
+            {{ form_start(form_ajout_publication_image) }}
+            {{ form_row(form_ajout_publication_image.image) }}
+            <a href="#" class="" id="pi1"><i class="material-icons left btn-post" style="font-size: 22px;margin-right: 6px;">create</i></a>
+            {{ form_end(form_ajout_publication_image) }}
+
+        </div>
+        <div class="taw narja3lek row">
+            <center>
+                <script type="text/javascript">
+                </script>
+
+
+            </center>
+        </div>
+
+        <div class="taw narja3lek row">
+            <center>
+                <span class="doura">{{ nbre_publication }}</span>
+            </center>
+        </div>
+
+        {% for m in listspotted %}
+
+            <div class="taw narja3lek row">
+                {{ form_start(form_filter_categorie) }}
+
+                {{ form_end(form_filter_categorie) }}
+
+
+                <!-- <input type="submit" id="filterarr" value="ALL" class="btnpi">
+                 <input type="submit" id="filterpublication" value="Publication" class="btnpi">
+                 <input type="submit" id="filterimage" value="Image" class="btnpi">!-->
+            </div>
+
+            <div id="con2">
+                <div class="card add-post1">
+                    <div class="post-header">
+
+                        {% if  m.idUser.sexe =="male" %}
+                            <img class="dp" src="{{ asset('images/user-male-3.png') }}" alt="">
+                        {% else %}
+                            <img class="dp" src="{{ asset('images/Female_picture.png') }}" alt="">
+
+                        {% endif %}
+                        <h6 class="post-name">
+                            {% if is_granted("ROLE_ADMIN") %}
+                            {{ m.idUser.nom }}  {{ m.idUser.prenom }}
+                            {% elseif app.user.id == m .idUser.id %}
+                                {{ m.idUser.nom }}  {{ m.idUser.prenom }}
+                            {% else %}
+                                hidden name
+                            {% endif %}
+                        </h6>
+                        <p class="post-time">
+
+
+                        <div class="tooltip">
+
+                            {{ m.dateP|ago }}
+                            {% if  m.dateModif != null  %}
+                            <span class="mod">(modifié)</span>
+                            {% endif %}
+                            {% if  m.dateModif < m.dateP  %}
+                            <span class="tooltiptext">{{ m.dateP|date }}</span>
+                            {% else %}
+
+                                <span class="tooltiptext">{{ m.dateModif|date }}</span>
+
+                            {% endif %}
+                        </div>
+                        </p>
+
+
+
+                        {% if app.user.id == m.idUser.id %}
+
+                            <ul class="list-style:disc !important;">
+                            <li><a class="dropdown-button btn drop" href="#" data-activates="dropdown1{{ m.id }}"><i class="material-icons">more_vert</i></a>
+                                <ul id="dropdown1{{ m.id }}" class="dropdown-content" style="width: 44px; position: absolute; top: 16px; left: 772px; display: none; opacity: 1;">
+                                    <li>
+
+
+                                        <a href="{{ path('_modifier_spotted',{'id':m.id}) }}">Modifier</a>
+                                    </li>
+
+                                    <li>
+
+
+                                        <a href="{{ path('_delete_spotted',{'id':m.id}) }}">Supprimer</a>
+                                    </li>
+
+
+
+                                </ul></li></ul>
+                        {% elseif is_granted('ROLE_ADMIN') %}
+                            <ul class="list-style:disc !important;">
+                                <li><a class="dropdown-button btn drop" href="#" data-activates="dropdown1{{ m.id }}"><i class="material-icons">more_vert</i></a>
+                                    <ul id="dropdown1{{ m.id }}" class="dropdown-content" style="width: 44px; position: absolute; top: 16px; left: 772px; display: none; opacity: 1;">
+                                        <li>
+
+
+                                            <a href="{{ path('_modifier_spotted',{'id':m.id}) }}">Modifier</a>
+                                        </li>
+
+                                        <li>
+
+
+                                            <a href="{{ path('_delete_spotted',{'id':m.id}) }}">Supprimer</a>
+                                        </li>
+
+
+
+                                    </ul></li></ul>
+                            {% else %}
+
+                        {% endif %}
+
+                    </div>
+                    {% if m.descP =="" %}
+                        <img class="post-image" src="{{ asset('uploads/images/' ~ m.image) }}" style="width:100%;" alt="">
+
+
+
+
+
+                    {% else %}
+                        <p>
+
+
+                            {{ m.descP|raw }}
+
+
+                        </p>
+                    {% endif %}
+                    <div class="reactions">
+
+                        <div class="perso-rate" style="display: none !important;">
+                            {% for j in listerate %}
+                                {% if app.user.id == j.idUser.id %}
+
+                                    {% if j.idPublication.id == m.id %}
+                                        {{ j.rating|rating }}
+
+
+                                    {% endif %}
+
+                                {% endif %}
+
+                            {% endfor %}
+                        </div>
+
+                        {% set sommerating = 0 %}
+                        {% set sommeuser = 0 %}
+                        {% for j in listerate %}
+
+
+                            {% if j.idPublication.id == m.id %}
+                                {% set sommerating = sommerating + j.rating %}
+                                {% set sommeuser = sommeuser + 1 %}
+
+
+                            {% endif %}
+
+
+                        {% endfor %}
+                        <br>
+
+                        <br>
+                        {% if sommeuser != 0 %}
+                            {% set finalres = sommerating/sommeuser %}
+                            {{ finalres|round|rating }}
+
+                        {% endif %}
+                        {% if m.descP =="" %}
+                            {% if sommeuser == 0 %}
+                                {{ 0|rating }}
+                            {% endif %}
+                        {% endif %}
+
+
+
+
+
+
+                        <a href="#" class="reactions-elements"><i class="material-icons left icons" style="margin-right:5px;">comment</i>
+                            {% set con = 0 %}
+                            {% for ui in countcommentstable %}
+                                {% if ui.idPublication.id == m.id%}
+                                    {% set con = con +1 %}
+                                {% endif %}
+
+                            {% endfor %}
+                            {{ con }}
+                        </a>
+
+                        <a class="reactions-elements1" href="{{ path('_test_anonyme',{'id':m.id}) }}">
+                            ouvrir
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        {% else %}
+
+            <div class="card add-post1">
+                <div class="post-header">
+
+                    <h6 class="post-name"></h6>
+                    <p class="post-time"></p>
+                    <div class="tooltip">
+                    </div>
+                    <p></p>
+
+                </div>
+                <p></p>
+                <p><center><h4>Aucune Publication ici</h4></center></p>
+                <p></p>
+                <div class="reactions">
+                </div>
+            </div>
+        {% endfor %}
+        <div id="con1">
+
+        </div>
+    </div>
+    <div class="col s12 m3 l3">
+        <div style="margin-top:1.5rem;">
+            <div class="card profile-matter1">
+                <div class="suggestions-list" style="padding:1rem;">
+                    <h6 style="font-weight:900;text-transform:uppercase;">Tags</h6>
+                    <hr class="line1">
+                    <div class="list-buddy">
+                        {% for m in listspotted %}
+
+                        <table>
+
+                        <tr><td><span style="color:blue !important;">#{{ m.tags }}&nbsp;</br></span><br></td></tr>
+
+
+
+                        {% endfor %}
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dropdown Structure -->
+<ul id='dropdown1' class='dropdown-content'>
+    <li><a href="#!">Profile</a></li>
+    <li><a href="#!">Settings</a></li>
+    <li><a href="#!">Log out</a></li>
+</ul>
+<!-- Dropdown Structure -->
+<ul id='dropdown2' class='dropdown-content'>
+    <li><a href="#!">Save</a></li>
+    <li><a href="#!">Tag Friends</a></li>
+</ul>
+
+
+</body>
+
+</html>

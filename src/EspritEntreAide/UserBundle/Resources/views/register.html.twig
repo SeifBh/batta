@@ -1,0 +1,204 @@
+{{ include('default/scripts.html.twig') }}
+{{ include('default/allstyle.html.twig') }}
+
+{{ include('default/top_header.html.twig') }}
+<style>
+
+
+    .product-feature-section {
+        background: #e6e6e6;
+        padding: 1rem;
+    }
+
+    .product-feature-section-outer {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        max-width: 100%;
+        margin: 0 auto;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    @media print, screen and (min-width: 40em) {
+        .product-feature-section-outer {
+            max-width: 75%;
+        }
+    }
+
+    .product-feature-section-headline {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .product-feature-section-inner {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    .product-feature-section-feature {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        padding: 1rem;
+        -webkit-flex: 1 0 50%;
+        -ms-flex: 1 0 50%;
+        flex: 1 0 50%;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+
+    .product-feature-section-feature .feature-title {
+        margin-bottom: 0;
+        line-height: 16px;
+        font-size: 0.875rem;
+    }
+
+    .product-feature-section-feature .feature-desc {
+        margin-bottom: 0;
+    }
+
+    .product-feature-section-feature .fa {
+        margin-right: 1.25rem;
+        font-size: 2rem;
+    }
+
+    @media print, screen and (min-width: 40em) {
+        .product-feature-section-feature {
+            padding: 2rem;
+            -webkit-flex: 1 0 50%;
+            -ms-flex: 1 0 50%;
+            flex: 1 0 50%;
+            -webkit-justify-content: flex-start;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            flex-direction: row;
+        }
+    }
+
+
+
+
+
+</style>
+<section class="contact-us-section">
+    <div class="row medium-unstack">
+        <div class="columns contact-us-section-left">
+
+            <h4 class="contact-us-header">Pourquoi créer un compte ?</h4>
+
+            <section class="">
+                <div class="">
+
+
+
+
+                        <div class="product-feature-section-feature top-left">
+                            <i class="fa fa-clock-o icor" aria-hidden="true"></i>
+                            <div>
+                                <p class="feature-title">Gagnez du temps</p>
+                                <p class="feature-desc">
+                                    Publiez vos annonces rapidement, avec vos informations pré-remplies chaque
+                                    fois que vous souhaitez déposer une nouvelle annonce.
+
+                                </p>
+                            </div>
+                        </div>
+
+                    <div class="product-feature-section-feature top-left">
+                        <i class="fa fa-eye icor" aria-hidden="true"></i>
+                        <div>
+                            <p class="feature-title">Soyez les premiers informés</p>
+                            <p class="feature-desc">
+                                Créez des alertes Immo ou Emploi et ne manquez jamais l'annonce qui vous intéresse.
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <div class="product-feature-section-feature top-left">
+                        <i class="fa fa-bell icor" aria-hidden="true"></i>
+                        <div>
+                            <p class="feature-title">Visibilité</p>
+                            <p class="feature-desc">
+                                Suivez les statistiques de vos annonces (nombre de fois où votre annonce a été vue, nombre de contacts reçus).
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </section>
+
+
+
+
+
+        </div>
+        <div class="columns contact-us-section-right">
+            <h4 class="contact-us-header">Créez un compte</h4>
+            <form>
+                <div class="grid-container">
+                    <div class="grid-x grid-padding-x">
+                        <div class="medium-12 cell">
+                            <label>Pseudo
+                                <input type="text" placeholder="">
+                            </label>
+                        </div>
+
+                        <div class="medium-12 cell">
+                            <label>Adresse email
+                                <input type="text" placeholder="">
+                            </label>
+                        </div>
+
+
+
+                        <div class="medium-6 cell">
+                            <label>Mot de passe
+                                <input type="text" placeholder="">
+                            </label>
+                        </div>
+                        <div class="medium-6 cell">
+                            <label>Confirmer le mot de passe
+                                <input type="text" placeholder="">
+                            </label>
+                        </div>
+                        <center>
+                            <a class="button expanded" href="#">Créer mon Compte Personnel</a>
+                        </center>
+
+
+
+                    </div>
+                </div>
+            </form>
+
+
+
+
+
+        </div>
+    </div>
+</section>
+

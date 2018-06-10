@@ -1,0 +1,79 @@
+{% extends ":default:test.html.twig" %}
+
+
+{% block title %}Evenements{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #336699; }
+
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    <body>
+    <div class="big-div">
+        <h1>Bienvenue dans l'interface de gestion des évenements </h1>
+    </div>
+    <br>
+
+
+    <div class="gallery" id="gallery">
+        <div class="container">
+            <div class="about-head text-center ">
+                <h3>Détails</h3>
+            </div>
+            <a class="btn btn-primary" href="{{ path('_ajouter_events') }}">Ajouter un évènement</a>
+            <hr>
+            <a class="btn btn-primary" href="{{ path('evenement_homepage') }}"><i class="fas fa-th-large"></i></a>
+            <hr>
+
+
+            <!-- div.table-responsive -->
+            <div class="table-header" style="background-color: #0077b5; color: white">
+                    Modifier l'adresse de l'évènement
+                </div>
+                <div>
+
+                    {{ form_start(form) }}
+                    {{ form_end(form) }}
+                </div>
+
+            <script src="{{ asset('js/lightbox-plus-jquery.min.js') }}"></script>
+        </div>
+    </div>
+
+
+
+
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link  href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style-table.css') }}" rel="stylesheet">
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+
+    <script src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+    <script src="{{ asset('js/jquery-ui-1.9.2.custom.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-migrate-1.2.1.min.js') }}"></script>
+
+    <!--data table-->
+    <script type="text/javascript" src="{{ asset('js/data-tables/jquery.dataTables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/data-tables/DT_bootstrap.js') }}"></script>
+
+    <!--script for editable table-->
+    <script src="{{ asset('js/editable-tableF.js') }}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            EditableTable.init();
+        });
+    </script>
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a>
+    </body>
+{% endblock %}

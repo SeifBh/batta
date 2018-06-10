@@ -1,0 +1,54 @@
+
+<ul class="tabs" data-tabs id="example-tabs">
+    <li class="tabs-title is-active"><a href="#pan1" aria-selected="true">Toutes 1 112 562</a></li>
+    <li class="tabs-title"><a href="#pan2">Particuliers 530 566</a></li>
+    <li class="tabs-title"><a href="#pan3">Professionel 452 025</a></li>
+        <select class="sel5">
+            <option value="husker">Trier par : Date</option>
+            <option value="apollo">Trier par : Prix</option>
+        </select>
+</ul>
+</div>
+<div class="medium-12 cell">
+    <div class="tabs-content" data-tabs-content="example-tabs">
+        <div class="tabs-panel is-active" id="pan1">
+
+            {% for i in 0..10 %}
+                <div class="checkout-summary-item">
+                    <img src="https://placeimg.com/100/80/any">
+                    <div class="item-name">
+                        <h4 class="titre_pub">Nom ici</h4>
+                        <i class="fi-clock  small "><span class="clock_pub float-left1">il ya 2 heures</span> </i>
+                        <p class="desc_pub"><span class="categories"> </span>Descr Description Description Description iption Description Description Description Description Description Description Description Description Description DescriptionDescription Description</p>
+                    </div>
+                    <div class="item-price">
+                        <p><span class="item_price price_pub">$ 123.4</span></p>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+
+        </div>
+        <div class="tabs-panel" id="pan2">
+            <p>Two</p>
+        </div>
+        <div class="tabs-panel" id="pan3">
+            <p>Three</p>
+        </div>
+
+    </div>
+</div>
+</div>
+<ul class="pagination text-center" role="navigation" aria-label="Pagination" data-page="6" data-total="16">
+    <li class="pagination-previous disabled">Previous <span class="show-for-sr">page</span></li>
+    <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
+    <li><a href="#" aria-label="Page 2">2</a></li>
+    <li><a href="#" aria-label="Page 3">3</a></li>
+    <li><a href="#" aria-label="Page 4">4</a></li>
+    <li class="ellipsis" aria-hidden="true"></li>
+    <li><a href="#" aria-label="Page 12">12</a></li>
+    <li><a href="#" aria-label="Page 13">13</a></li>
+    <li class="pagination-next"><a href="#" aria-label="Next page">Next <span class="show-for-sr">page</span></a></li>
+</ul>
+

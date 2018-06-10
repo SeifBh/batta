@@ -1,0 +1,208 @@
+
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+<style>
+
+
+    .pull-left {
+        float: left;
+    }
+    .pull-right {
+        float: right;
+    }
+    .col-gutters {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .col-baselines {
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+    .media-primary .media-object, .media-secondary .media-object-alt {
+        float: right;
+        margin: 0 0 20px 20px;
+    }
+    .media-body, .media-left, .media-right {
+        display: table-cell;
+        vertical-align: top;
+    }
+    .media-body {
+        width: 10000px;
+    }
+    h5, .h-related {
+        font-size: 14px;
+    }
+    li.media.col-gutters.pad-top.abcd2 {
+        padding: 20px;
+        background-color: #eeeeee;
+        margin: 11px;
+        width: 94% !important;
+    }
+    .media-primary .media {
+        width: 100% !important;
+        border-top: 1px solid #d4d4d4;
+    }
+    .media-primary .media {
+        border-top: 1px solid #d4d4d4;
+    }
+
+
+    textarea#espritentreaide_spottedbundle_commentaire_contentComm {
+        border-bottom: 1px dashed #dfe2e5  !important;
+        border-bottom-right-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+        max-width: 100% !important;
+        width: 100%;
+        height: 100px !important;
+        min-height: 100px !important;
+        padding: 20px;
+        margin: 0 !important;
+        vertical-align: middle !important;
+        background-color: #fff !important;
+        background-repeat: no-repeat !important;
+        background-position: right 8px center !important;
+        border: 1px solid #d1d5da !important;
+        border-radius: 3px !important;
+        outline: none !important;
+        font-size: 14px !important;
+        background-color: #fafbfc !important;
+        line-height: 1.6 !important;
+    }
+    img.dp {
+        float: right;
+        margin-right: 114px;
+        /* border: 1px solid black; */
+    }
+</style>
+
+<ul class="media-primary">
+    {% set nb = 0  %}
+
+    {% for f in comments %}
+    {% set nb = nb + 1  %}
+
+    {% endfor %}
+    <h3 class="pull-right">Nombre commentaires =  {{ nb }}</h3>
+    {% for m in listspotted %}
+<a href="{{ path('_clearcommentsAdmin',{'id':m.id}) }}">Vider tous les commentaires</a>
+        <li class="media col-gutters pad-top">
+            <a class="media-object" href="#">
+                {% for f in comments %}
+                    {% set nb = nb + 1  %}
+
+
+                {% if  f.idUser.sexe =="male" %}
+                    <img class="dp" src="{{ asset('images/user-male-3.png') }}" alt="" width="20%">
+                {% else %}
+                    <img class="dp" src="{{ asset('images/Female_picture.png') }}" alt="" width="20%">
+
+                {% endif %}
+                {% endfor %}
+            </a>
+            <div class="media-body">
+                <h5>
+                    {% if is_granted("ROLE_ADMIN") %}
+                        {{ m.idUser.nom }} {{ m.idUser.prenom }}
+                    {% else %}
+                        nom caché
+                    {% endif %}
+
+                    <span class="text-subtle h-promo">{{ m.dateP|ago }}</span></h5>
+                {% if m.image == NULL %}
+                    <p>{{ m.descP|raw }}</p>
+                {% else %}
+                    <img src="{{ asset('uploads/images/'~m.image) }}"/>
+                {% endif %}
+
+                {% if listerate == null %}
+
+                    {{ form_start(form6) }}
+
+                    {{ form_row(form6.idPublication, {
+                        'value': m.id
+                    }) }}
+                    {{ form_end(form6) }}
+
+                {% else %}
+
+
+
+
+
+                    {{ listerate.rating|rating }}
+
+
+
+
+
+
+                {% endif %}
+
+
+            </div>
+        </li>
+
+    {% endfor %}
+
+
+
+
+    {% for f in comments %}
+
+        <li class="media col-gutters pad-top abcd2">
+            <a class="media-object" href="#">
+                {% if  f.idUser.sexe =="male" %}
+                    <img class="dp" src="{{ asset('images/user-male-3.png') }}" alt="" width="20%">
+                {% else %}
+                    <img class="dp" src="{{ asset('images/Female_picture.png') }}" alt="" width="20%">
+
+                {% endif %}
+
+            </a>
+            <div class="media-body">
+                <h5>{% if is_granted("ROLE_ADMIN") %}
+                        {{ f.idUser.nom }} {{ f.idUser.prenom }}
+                    {% else %}
+                        nom caché
+                    {% endif %}
+                    <span class="text-subtle h-promo">{{ f.dateCreation|ago }}</span></h5>
+                <p>{{ f.contentComm }}</p>
+                {% if app.user.id == f.idUser.id %}
+
+                    <ul class="list-style:disc !important;">
+                        <li>
+
+
+                            <a href="{{ path('_edit_comment_spotted',{'id':f.id}) }}">Modifier</a>
+                        </li>
+
+                        <li>
+
+
+                            <a href="{{ path('_delete_comment_spotted',{'id':f.id}) }}">Supprimer</a>
+                        </li>
+
+
+
+                    </ul>
+                {% endif %}
+            </div>
+        </li>
+    {% endfor %}
+
+
+</ul>
+<div class="col-box">
+    {{ form_start(form) }}
+
+    {{ form_end(form) }}
+
+</div>
+
+<div class="col-box">
+</div>
+
+<script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>

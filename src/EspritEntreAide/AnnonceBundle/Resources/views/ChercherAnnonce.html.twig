@@ -1,0 +1,309 @@
+{% extends ":default:test.html.twig" %}
+
+
+{% block title %}Annonces{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #336699; }
+
+        div {
+            margin-bottom: 10px;
+            padding: 0px 10px;
+        }
+        .success {
+            background-color: #adffa7;
+            border-left: 6px solid #4CAF50;
+        }
+        .warning {
+            background-color: #ffcb05;
+            border-left: 6px solid #ff6318;
+        }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    <div id="mySidenav" class="sidenav">
+        <link rel="stylesheet" href="{{ asset('css/style_indexAnnonce.css') }}">
+        <a id="Ajouter" href={{ path('_annonce_ajouter')}}>Ajouter une annonce</a>
+        <a  id="Chercher" href={{ path('annonce_homepage')}}>Liste des annonces</a>
+    </div>
+    <div class="big-div">
+        <h1><a href="{{ path('_annonce_chercher1') }}">Chercher une annonce</a></h1>
+    </div>
+    {% if (is_granted('ROLE_RESPONSABLE_SUPER_ADMIN'))
+        or(is_granted('ROLE_SUPER_ADMIN'))
+        or(is_granted('ROLE_ADMIN'))
+        or(is_granted('ROLE_ETUDIANT'))
+        or(is_granted('ROLE_ENSEIGNANT'))
+        or(is_granted('ROLE_RESPONSABLE_CLUB'))
+        or(is_granted('ROLE_RESPONSABLE_STORE'))
+    %}
+
+
+
+
+        {{ form_start(form) }}
+        <script src="{{  asset('jquery-3.2.1.min.js') }}"></script>
+
+        <script type="text/javascript">
+            $(function(){
+                $("#titreA").keyup(
+                    function(){
+                        abcd =  $("#titreA").val();
+                        DATA = 's='+abcd;
+                        //alert(abcd);
+                        $.ajax({
+
+                            url : '{{ path("_annonce_chercher") }}',
+                            data:DATA,
+
+                            success : function(response){
+                                $("#a5").html("");
+                                $.each(response,function(k,el){
+                                    var type = "";
+                                    if (el.categorieA =="collocation")
+                                    {
+                                        type = "maison";
+                                    }
+                                    else if (el.categorieA =="permutation")
+                                    {
+                                        type = "vaVient";
+
+                                    }
+                                    else if (el.categorieA =="objetPerdue")
+                                    {
+                                        type = "question";
+
+                                    }
+                                    else if (el.categorieA =="objetTrouve")
+                                    {
+                                        type = "question";
+
+                                    }
+                                    else
+                                    {
+                                        type = "voiture"
+                                    }
+                                    $('#a5').append(
+                                        "<div class='col-md-4'>" +
+                                        "<div class=''>"+
+                                        "<p><strong>"+el.etat+"</strong></p>"+
+                                        "<span>"+el.titreA+"</span>"+
+                                        "<img src='/pidemo1/web/images/ImageAnnonce/"+type+".png' >"
+
+
+
+                                        +"</div>"+
+                                        "</div>"
+                                    )
+                                })
+
+                            },
+                        })
+                    }
+
+                );
+            });
+        </script>
+
+        {{ form_end(form) }}
+
+        <p class="important">
+
+        </p>
+        <div class="">
+            <div class="container-fluid">
+
+
+                <div class="row">
+                    <div class="col-md-8" id="a5">
+                        {% for a in annonce %}
+                            <!--********Categorie collocation******* -->
+                            {% if a.categorieA == "collocation" %}
+                                {% if a.etat == "resolue" %}
+
+                                    <div class="col-md-4 con2"  style="">
+
+                                        <link rel="stylesheet" href="{{ asset('css/style_chercherAnnonce.css') }}">
+
+                                        <div class="success">
+                                            <p><strong>Resolue </strong></p>
+                                        </div>
+                                        <img src="{{ asset('images/ImageAnnonce/maison.png') }}" >
+                                        <b> {{ a.titreA }}</b>
+                                        <div class="con2">
+                                            {{ a.descA }}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if a.etat == "nonResolue" %}
+                                    <div class="col-md-4 con2" style="">
+                                        <link rel="stylesheet" href="{{ asset('css/style_chercherAnnonce.css') }}">
+                                        <div class="warning">
+                                            <p><strong>Non Resolue ! </strong></p>
+                                        </div>
+                                        <img src="{{ asset('images/ImageAnnonce/maison.png') }}" >
+                                        <b>{{ a.titreA }}</b>
+                                        <div class="con2">
+                                            {{ a.descA }}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+
+                            <!--********Categorie covoiturage******* -->
+
+                            {% if a.categorieA == "covoiturage" %}
+                                {% if a.etat == "resolue" %}
+
+                                    <div class="col-md-4 con2"  style="">
+
+                                        <link rel="stylesheet" href="{{ asset('css/style_chercherAnnonce.css') }}">
+
+                                        <div class="success">
+                                            <p><strong>Resolue </strong></p>
+                                        </div>
+                                        <img src="{{ asset('images/ImageAnnonce/voiture.png') }}" >
+                                        <b> {{ a.titreA }}</b>
+                                        <div class="con2">
+                                            {{ a.descA }}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if a.etat == "nonResolue" %}
+                                    <div class="col-md-4 con2" style="">
+                                        <link rel="stylesheet" href="{{ asset('css/style_chercherAnnonce.css') }}">
+                                        <div class="warning">
+                                            <p><strong>Non Resolue ! </strong></p>
+                                        </div>
+                                        <img src="{{ asset('images/ImageAnnonce/voiture.png') }}" >
+                                        <b>{{ a.titreA }}</b>
+                                        <div class="con2">
+                                            {{ a.descA }}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+
+                            <!--********Categorie permutation******* -->
+                            {% if a.categorieA == "permutation" %}
+                                {% if a.etat == "resolue" %}
+
+                                    <div class="col-md-4 con2"  style="">
+
+                                        <link rel="stylesheet" href="{{ asset('css/style_chercherAnnonce.css') }}">
+
+                                        <div class="success">
+                                            <p><strong>Resolue </strong></p>
+                                        </div>
+                                        <img src="{{ asset('images/ImageAnnonce/vaVient.png') }}" >
+                                        <b> {{ a.titreA }}</b>
+                                        <div class="con2">
+                                            {{ a.descA }}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if a.etat == "nonResolue" %}
+                                    <div class="col-md-4 con2" style="">
+                                        <link rel="stylesheet" href="{{ asset('css/style_chercherAnnonce.css') }}">
+                                        <div class="warning">
+                                            <p><strong>Non Resolue ! </strong></p>
+                                        </div>
+                                        <img src="{{ asset('images/ImageAnnonce/vaVient.png') }}" >
+                                        <b>{{ a.titreA }}</b>
+                                        <div class="con2">
+                                            {{ a.descA }}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                            <!--********Categorie objet perdu******* -->
+                            {% if a.categorieA == "objetPerdu" %}
+                                {% if a.etat == "resolue" %}
+
+                                    <div class="col-md-4 con2"  style="">
+
+                                        <link rel="stylesheet" href="{{ asset('css/style_chercherAnnonce.css') }}">
+
+                                        <div class="success">
+                                            <p><strong>Resolue </strong></p>
+                                        </div>
+                                        <img src="{{ asset('images/ImageAnnonce/question.png') }}" >
+                                        <b> {{ a.titreA }}</b>
+                                        <div class="con2">
+                                            {{ a.descA }}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if a.etat == "nonResolue" %}
+                                    <div class="col-md-4 con2" style="">
+                                        <link rel="stylesheet" href="{{ asset('css/style_chercherAnnonce.css') }}">
+                                        <div class="warning">
+                                            <p><strong>Non Resolue ! </strong></p>
+                                        </div>
+                                        <img src="{{ asset('images/ImageAnnonce/question.png') }}" >
+                                        <b>{{ a.titreA }}</b>
+                                        <div class="con2">
+                                            {{ a.descA }}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                            <!--********Categorie objet trouve******* -->
+                            {% if a.categorieA == "objetTrouve" %}
+                                {% if a.etat == "resolue" %}
+
+                                    <div class="col-md-4 con2"  style="">
+
+                                        <link rel="stylesheet" href="{{ asset('css/style_chercherAnnonce.css') }}">
+
+                                        <div class="success">
+                                            <p><strong>Resolue </strong></p>
+                                        </div>
+                                        <img src="{{ asset('images/ImageAnnonce/question.png') }}" >
+                                        <b> {{ a.titreA }}</b>
+                                        <div class="con2">
+                                            {{ a.descA }}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if a.etat == "nonResolue" %}
+                                    <div class="col-md-4 con2" style="">
+                                        <link rel="stylesheet" href="{{ asset('css/style_chercherAnnonce.css') }}">
+                                        <div class="warning">
+                                            <p><strong>Non Resolue ! </strong></p>
+                                        </div>
+                                        <img src="{{ asset('images/ImageAnnonce/question.png') }}" >
+                                        <b>{{ a.titreA }}</b>
+                                        <div class="con2">
+                                            {{ a.descA }}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+
+                        {% endfor %}
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+    {% else %}
+        <center><h1>You should <a href="{{ path('fos_user_security_login') }}" >Login</a> or <a href="{{ path('fos_user_registration_register') }}">Register</a> :) </h1></center>
+    {% endif %}
+{% endblock %}

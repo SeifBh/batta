@@ -1,0 +1,90 @@
+{# templates/base.html.twig #}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Test Application{% endblock %}</title>
+    {{ include('default/scripts.html.twig') }}
+
+</head>
+<body>
+{{ include('default/head.html.twig') }}
+
+{% block body %}
+<article class="grid-container">
+    <div class="grid-x grid-margin-x" id="content" data-mutate="tlv88z-sticky" data-events="mutate">
+        <div class="medium-9 cell">
+            {% block products %}
+                {{ include('default/bod.html.twig') }}
+            {% endblock %}
+        </div>
+        <div class="medium-3 cell sticky-container" data-sticky-container="" style="height: 302px;">
+            {% block sidebar %}
+            <div class="sticky is-anchored is-at-top" data-sticky="" data-anchor="content" data-resize="tlv88z-sticky" data-mutate="tlv88z-sticky" data-e="1bvrau-e" style="max-width: 270px; margin-top: 0px; bottom: auto; top: 0px;" data-events="resize">
+                {{ include('default/side.html.twig') }}
+
+                </ul>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+    <div class="grid-x cell">
+        {% block footer %}
+        {{ include('default/foot.html.twig') }}
+        {% endblock %}
+
+    </div>
+
+</article>
+{% endblock %}
+<div class="grid-x">
+    <div class="cell small-6 searchBox">
+        <div class="input-group">
+            <input class="input-group-field" type="text">
+            <div class="input-group-button">
+                <button type="submit" class="" value="">
+                    <i class="fi-magnifying-glass icon-mirrored"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="grid-x collapse tab-container">
+    <div class="medium-12 cell">
+        <ul class="tabs" data-tabs id="example-tabs">
+            <li class="tabs-title is-active"><a href="#pan1" aria-selected="true">Tab 1</a></li>
+            <li class="tabs-title"><a href="#pan2">Tab 2</a></li>
+            <li class="tabs-title"><a href="#pan3">Tab 3</a></li>
+            <li class="tabs-title"><a href="#pan4">Tab 4</a></li>
+            <li class="tabs-title"><a href="#pan5">Tab 5</a></li>
+            <li class="tabs-title"><a href="#pan6">Tab 6</a></li>
+        </ul>
+    </div>
+    <div class="medium-12 cell">
+        <div class="tabs-content" data-tabs-content="example-tabs">
+            <div class="tabs-panel is-active" id="pan1">
+                <p>One</p>
+            </div>
+            <div class="tabs-panel" id="pan2">
+                <p>Two</p>
+            </div>
+            <div class="tabs-panel" id="pan3">
+                <p>Three</p>
+            </div>
+            <div class="tabs-panel" id="pan4">
+                <p>Four</p>
+            </div>
+            <div class="tabs-panel" id="pan5">
+                <p>Five</p>
+            </div>
+            <div class="tabs-panel" id="pan6">
+                <p>Six</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

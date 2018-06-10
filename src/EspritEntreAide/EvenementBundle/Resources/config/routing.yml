@@ -1,0 +1,84 @@
+evenement_homepage:
+    path:     /ab
+    defaults: { _controller: EvenementBundle:Default:index }
+
+
+_afficher_events:
+    path:     /afficherevent
+    defaults: { _controller: EvenementBundle:Evenement:afficher }
+_afficher_events_passer:
+    path:     /affichereventspasse
+    defaults: { _controller: EvenementBundle:Evenement:afficherEventsPasse }
+_ajouter_events:
+    path:     /ajouterevent
+    defaults: { _controller: EvenementBundle:Evenement:ajout }
+
+_supprimer_events:
+    path:     /supprimerevent
+    defaults: { _controller: EvenementBundle:Evenement:supprimer }
+    methods: [POST]
+    options:
+            expose: true
+
+_modifier_events:
+    path:     /modifierevent
+    defaults: { _controller: EvenementBundle:Evenement:modifier }
+    methods: [POST]
+    options:
+            expose: true
+
+_participer_events:
+    path:     /participerevent
+    defaults: { _controller: EvenementBundle:Evenement:participerEvent }
+
+ne_pas_participer_events:
+    path:     /nepasparticiperevent
+    defaults: { _controller: EvenementBundle:Evenement:nePasParticiperEvent }
+_afficher_tri_events:
+    path:     /affichertrievent
+    defaults: { _controller: EvenementBundle:Evenement:afficherTri }
+
+_afficher_un_event:
+    path:     /afficherunevent
+    defaults: { _controller: EvenementBundle:Evenement:afficherUnEvent }
+
+_modifier_img_event:
+    path:     /modifimgunevent
+    defaults: { _controller: EvenementBundle:Evenement:ModifierImgEvent }
+
+map:
+    path:     /map
+    defaults: { _controller: EvenementBundle:Evenement:map }
+
+modifier_adresse_event:
+    path:     /modifadresseunevent
+    defaults: { _controller: EvenementBundle:Evenement:modifierAdresseEvent }
+
+afficherParticipations:
+    path:     /afficherparticipations
+    defaults: { _controller: EvenementBundle:Evenement:afficherParticipations }
+affichermobile:
+    path:     /affichermobile
+    defaults: { _controller: EvenementBundle:Evenement:afficherMobile }
+
+ajoutermobile:
+    path:     /ajoutermobile
+    defaults: { _controller: EvenementBundle:Evenement:ajoutMobile }
+modifiermobile:
+    path:     /modifiermobile
+    defaults: { _controller: EvenementBundle:Evenement:modifierMobile }
+supprimermobile:
+    path:     /supprimermobile
+    defaults: { _controller: EvenementBundle:Evenement:supprimerMobile }
+participermobile:
+    path:     /participermobile
+    defaults: { _controller: EvenementBundle:Evenement:participerMobile }
+noparticipermobile:
+    path:     /noparticipermobile
+    defaults: { _controller: EvenementBundle:Evenement:noParticiperMobile }
+checkparticipermobile:
+    path:     /checkparticipermobile
+    defaults: { _controller: EvenementBundle:Evenement:checkParticipationMobile }
+countparticipantsmobile:
+    path:     /count
+    defaults: { _controller: EvenementBundle:Evenement:count }

@@ -1,0 +1,84 @@
+{% extends ":default:test.html.twig" %}
+
+
+{% block title %}Annonce{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #336699; }
+
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="big-div-club">
+        <h1>Modifier annonce</h1>
+    </div>
+    <div id="mySidenav" class="sidenav">
+        <link rel="stylesheet" href="{{ asset('css/style_indexAnnonce.css') }}">
+        <a id="Ajouter" href={{ path('_annonce_ajouter')}}>Ajouter une annonce</a>
+        <a  id="Chercher" href={{ path('annonce_homepage')}}>Liste des annonces</a>
+
+    </div>
+    <center>
+        <div class="">
+            <table border="2" class="table table-bordered table-hover " >
+
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+
+
+
+                <div class="form-group has-feedback">
+                    {{ form_label(form.titreA,'Titre') }}
+                    {{ form_errors(form.titreA) }}
+                    {{ form_widget(form.titreA,{'attr': {'class': 'form-control','placeholder': "titre de l'annonce"}}) }}
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+
+                <div class="form-group has-feedback">
+                    {{ form_label(form.categorieA ,'Categorie')}}
+                    {{ form_errors(form.categorieA) }}
+                    {{ form_widget(form.categorieA,{'attr': {'class': 'form-control','placeholder': "permutation,objet perdue,collecation,cours ..." }}) }}
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+
+                <div class="form-group has-feedback">
+                    {{ form_label(form.descA ,'Description')}}
+                    {{ form_errors(form.descA) }}
+                    {{ form_widget(form.descA,{'attr': {'class': 'form-control','placeholder': "la description de votre annonce"}}) }}
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="checkbox icheck">
+
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4">
+                        {{ form_widget(form.Ajouter,{'attr': {'class': 'btn btn-primary'}}) }}
+
+                    </div>
+                    <!-- /.col -->
+                </div>
+
+
+
+                {{ form_end(form) }}
+
+            </table>
+            <span style="alignment: right"></span>
+        </div>
+
+    </center>
+
+    <p class="important">
+
+    </p>
+{% endblock %}
+
+
+
+
+

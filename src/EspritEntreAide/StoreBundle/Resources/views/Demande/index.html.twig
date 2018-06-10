@@ -1,0 +1,84 @@
+{% extends "admin/backbase.html.twig" %}
+
+{% block body %}
+
+<h1>liste des demandes</h1>
+
+    Rechercher demande :
+    <input type="text" placeholder="enseignant" id="teacher" onkeyup="search()">
+    <input type="text" placeholder="store" id="store" onkeyup="search()">
+    <input type="text" placeholder="date d'ajout" id="date" onkeyup="search()">
+<table class="table">
+    <tr>
+        <th>id</th>
+        <th>nombre copies</th>
+        <th>date d'ajout de la demande</th>
+        <th>store</th>
+        <th>enseignant</th>
+        <th>supprimer</th>
+        <th>document</th>
+    </tr>
+    <tbody id="table">
+    {% for demande in demandes %}
+        <tr>
+            <td>{{ demande.id }}</td>
+            <td>{{ demande.nbrCopie }}</td>
+            <td>{{ demande.dateCreation|date('Y-m-d') }}</td>
+            <td>{{ demande.idStore.nomStore }}</td>
+            <td>{{ demande.idUser.username }}</td>
+            <td><a href="{{ path('demande_remove',{'id':demande.id}) }}">supprimer</a></td>
+            <td><a href="{{ path('demande_detail',{'id':demande.id}) }}">document</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    {{ knp_pagination_render(demandes) }}
+{% endblock %}
+
+{% block script %}
+    {{ parent() }}
+    <script>
+        function formatDate(date) {
+            var monthNames = [
+                "January", "February", "March",
+                "April", "May", "June", "July",
+                "August", "September", "October",
+                "November", "December"
+            ];
+
+            var day = date.getDate();
+            var monthIndex = date.getMonth();
+            var year = date.getFullYear();
+
+            return   year + "-"+(monthIndex+1)+"-"+day;
+        }
+        function search() {
+            $.ajax({
+                url: "{{ path('demande_search_admin') }}",
+                method: "POST",
+                data: "date="+ $("#date").val()+"&store="+$("#store").val()+"&teacher="+$("#teacher").val(),
+                success: function (data) {
+                    $("#table").html("");
+                    $.each(data,function (index,element) {
+                        pathDetail="{{ path('demande_detail',{'id':'demandeId'}) }}";
+                        pathDetail=pathDetail.replace('demandeId',element.id);
+                        pathDel="{{ path('demande_remove',{'id':'demandeId'}) }}";
+                        pathDel=pathDel.replace('demandeId',element.id);
+                        $("#table").append(`
+                        <tr>
+                        <td>`+element.id+`</td>
+                        <td>`+element.nbrCopie+`</td>
+                        <td>`+formatDate(new Date(element.dateCreation.date))+`</td>
+                        <td>`+element.nomStore+`</td>
+                        <td>`+element.username+`</td>
+                        <td><a href="`+pathDel+`">Supprimer</a></td>
+                        <td><a href="`+pathDetail+`">document</a></td>
+</tr>
+                        `);
+
+                    })
+                }
+            })
+        }
+    </script>
+{% endblock script %}

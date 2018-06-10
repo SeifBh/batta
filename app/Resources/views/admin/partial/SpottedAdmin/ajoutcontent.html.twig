@@ -1,0 +1,38 @@
+<div class="col-md-6">
+    <a id="a1" type="button" class="btn btn-primary btn-lg btn-block">Ajouter Une Publication secrete </a>
+</div>
+<div class="col-md-6">
+    <a id="a2"   type="button" class="btn btn-secondary btn-lg btn-block">Ajouter une image</a>
+</div>
+
+<div id="contenue1">
+    {{ form_start(form_ajout_publication) }}
+    {{ form_errors(form_ajout_publication) }}
+
+    {{ form_end(form_ajout_publication) }}
+</div>
+<div id="contenue2">
+    {{ form_start(form_ajout_image) }}
+    {{ form_row(form_ajout_image.image) }}
+{{ form_end(form_ajout_image) }}
+</div>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        alert('sdsd');
+    $("#contenue1").hide();
+    $("#contenue2").hide();
+
+    });
+    $( "#a1" ).click(function() {
+        $("#contenue2").hide();
+        $("#contenue1").show();
+    });
+    $( "#a2" ).click(function() {
+        $("#contenue1").hide();
+        $("#contenue2").show();
+    });
+
+
+
+    </script>

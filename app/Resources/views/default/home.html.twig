@@ -1,0 +1,445 @@
+{{ include('default/scripts.html.twig') }}
+{{ include('default/allstyle.html.twig') }}
+<style>
+
+    .ecommerce-header {
+        width: 100%;
+        background-color: #fefefe;
+    }
+
+    .ecommerce-header .logo {
+        height: 50px;
+        width: 160px;
+    }
+
+    .ecommerce-header ul {
+        background-color: #fefefe;
+    }
+
+    .ecommerce-header li {
+        display: inline-block;
+    }
+
+    .ecommerce-header .nav-links {
+        margin-left: 15px;
+    }
+
+    .ecommerce-header a {
+        color: #8a8a8a;
+        transition: color 0.5s ease;
+        display: block;
+    }
+
+    .ecommerce-header a:hover {
+        color: #0b0b0b;
+        transition: color 0.5s ease;
+    }
+
+    .ecommerce-header input {
+        margin-right: 0px;
+    }
+
+    @media screen and (max-width: 74.9375em) {
+        .ecommerce-header input {
+            width: 150px;
+        }
+    }
+
+    .ecommerce-header.top-bar {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .ecommerce-header .button.search-button {
+        width: 39px;
+        height: 39px;
+        background-size: 20px 20px;
+        background-image: url("https://placehold.it/20x20");
+        background-repeat: no-repeat;
+        background-position: center center;
+        padding-left: 0;
+        padding-right: 0;
+        border-radius: 0px;
+    }
+
+    .ecommerce-header .menu > .main-nav-link > a {
+        padding: 1.5em 0.85em 1.9em 0.85em;
+    }
+
+    .ecommerce-header-top {
+        width: 100%;
+        background-color: #575757;
+        height: 40px;
+        padding: 8px 20px 10px 20px;
+    }
+
+    .ecommerce-header-top .fa {
+        color: #fefefe;
+        font-size: 1.5rem;
+    }
+
+    .ecommerce-header-top-message {
+        color: white;
+        float: left;
+    }
+
+    .ecommerce-header-top-links {
+        color: white;
+    }
+
+    .ecommerce-header-top-links ul li {
+        display: inline;
+        padding-left: 20px;
+    }
+
+    .ecommerce-header-top-links a {
+        color: white;
+        transition: color 0.5s ease;
+    }
+
+    .ecommerce-header-top-links a:hover {
+        color: white;
+        transition: color 0.5s ease;
+    }
+
+    .ecommerce-header-off-canvas {
+        background-color: #575757;
+    }
+
+    .ecommerce-header-off-canvas .menu {
+        padding: 1rem 0;
+    }
+
+    .ecommerce-header-off-canvas .menu a {
+        color: #8a8a8a;
+    }
+
+    .ecommerce-header-mobile {
+        background-color: #575757;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        padding: 0.625rem 1.25rem;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+    }
+
+    .ecommerce-header-mobile-left,
+    .ecommerce-header-mobile-right,
+    .ecommerce-header-mobile-center {
+        -webkit-flex: 1 0 0;
+        -ms-flex: 1 0 0px;
+        flex: 1 0 0;
+    }
+
+    .ecommerce-header-mobile-left {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+    }
+
+    .ecommerce-header-mobile-center {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    .ecommerce-header-mobile-right {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+    }
+
+    .ecommerce-header-mobile-right .fa {
+        color: #fefefe;
+        font-size: 1.5rem;
+    }
+
+    .ecommerce-header-search-exandable input[type=search] {
+        margin: 0 1rem;
+        background: #e6e6e6 url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+        border: solid 1px #cacaca;
+        padding: 9px 10px 9px 26px;
+        width: 35px;
+        border-radius: 5000px;
+        transition: all 0.5s;
+    }
+
+    .ecommerce-header-search-exandable input[type=search]:focus {
+        width: 120px;
+        background-color: #fefefe;
+        border-color: #1779ba;
+        box-shadow: 0 0 5px rgba(23, 121, 186, 0.5);
+    }
+
+    .ecommerce-header-search-exandable input:-moz-placeholder {
+        color: #8a8a8a;
+    }
+
+    .ecommerce-header-search-exandable input::-webkit-input-placeholder {
+        color: #8a8a8a;
+    }
+
+    .ecommerce-header-search-exandable input[type=search]:hover {
+        background-color: #fefefe;
+    }
+.bd_home{
+    padding: 0 157px;
+}
+
+    .ecommerce-header.show-for-large {
+        background-color: #f56b2a !important;
+    }
+    ul.vertical.medium-horizontal.menu {
+        background-color: #f56b2a !important;
+    }
+
+    .ecommerce-header .menu > .main-nav-link > a {
+        padding: 1.5em 0.85em 1.9em 0.85em;
+        color: white !important;
+    }
+
+</style>
+
+
+<body class="bd_home">
+
+
+<div class="none">
+    <div class="off-canvas ecommerce-header-off-canvas position-left is-transition-push" id="ecommerce-header" data-off-canvas="vrhyow-off-canvas" aria-hidden="true">
+
+        <button class="close-button" aria-label="Close menu" type="button" data-close="">
+            <span aria-hidden="true">×</span>
+        </button>
+        <ul class="vertical menu">
+            <li class="main-nav-link"><a href="categories.html">Category 1</a></li>
+            <li class="main-nav-link"><a href="#">Category 2</a></li>
+            <li class="main-nav-link"><a href="why.html">Category 3</a></li>
+            <li class="main-nav-link"><a href="build.html">Category 4</a></li>
+            <li class="main-nav-link"><a href="#">Category 5</a></li>
+        </ul>
+        <hr>
+
+        <ul class="menu vertical">
+            <li><a href="#">Connexion</a></li>
+            <li><a href="#">Inscrivez vous</a></li>
+
+        </ul>
+    </div>
+
+    <div class="off-canvas-content" data-off-canvas-content="">
+        <div class="ecommerce-header-top show-for-large">
+            <div class="row align-justify">
+                <div class="ecommerce-header-top-message">
+                    Marhbé bik fel batta
+                </div>
+                <div class="ecommerce-header-top-links">
+                    <ul>
+                        <li><a href="#">Devenir notre partenaire</a></li>
+                        <li><a href="#">Connexion</a></li>
+                        <li><a href="#">Inscrivez vous</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ecommerce-header show-for-large">
+            <div class="row align-justify align-middle">
+                <div class="shrink column">
+                    <ul class="vertical medium-horizontal menu">
+                        <li><a href="#"><img class="logo" src="http://localhost/PIDEV-final/web/batta-style/images/logo_batta.png"></a></li>
+                        <li class="main-nav-link"><a href="categories.html">Particuliers</a></li>
+                        <li class="main-nav-link"><a href="#">Professionel</a></li>
+
+
+
+
+
+                    </ul>
+                </div>
+                <div class="shrink column">
+                    <a style="float: right !important;" class="button expanded a2" href="#">Publier une annonce</a>
+                </div>
+            </div>
+        </div>
+        <div class="ecommerce-header-mobile hide-for-large">
+            <div class="ecommerce-header-mobile-left">
+                <button class="menu-icon" type="button" data-toggle="ecommerce-header" aria-expanded="false" aria-controls="ecommerce-header"></button>
+                <form class="ecommerce-header-search-exandable">
+                    <input type="search" placeholder="Search">
+                </form>
+            </div>
+            <div class="ecommerce-header-mobile-center">
+                <a href="#"><img class="logo" src="https://placehold.it/130x30"></a>
+            </div>
+            <div class="ecommerce-header-mobile-right">
+                <i class="fa fa-shopping-cart"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<article class="grid-container">
+    <div class="grid-x grid-margin-x">
+
+        <div class="medium-2 cell">
+
+
+            <ul>
+
+
+                <a href="#"><li class="lietat">Ariana</li></a>
+                <a href="#"><li class="lietat">Béja</li></a>
+                <a href="#"><li class="lietat">Ben Arous</li></a>
+                <a href="#"><li id="bizerte_h" class="lietat">Bizerte</li></a>
+                <a href="#"><li id="gabes" class="lietat">Gabès</li></a>
+                <a href="#"><li class="lietat">Gafsa</li></a>
+                <a href="#"><li class="lietat">Kairouan</li></a>
+                <a href="#"><li class="lietat">Kasserine</li></a>
+                <a href="#"><li class="lietat">Kébili</li></a>
+                <a href="#"><li class="lietat">Kef</li></a>
+                <a href="#"><li class="lietat">Mahdia</li></a>
+                <a href="#"><li class="lietat">Manouba</li></a>
+                <a href="#"><li class="lietat">Médenine</li></a>
+                <a href="#"><li class="lietat">Monastir</li></a>
+                <a href="#"><li class="lietat">Nabeul</li></a>
+                <a href="#"><li class="lietat">Sfax</li></a>
+                <a href="#"><li class="lietat">Sidi Bouzid</li></a>
+                <a href="#"><li class="lietat">Siliana</li></a>
+                <a href="#"><li class="lietat">Sousse</li></a>
+                <a href="#"><li class="lietat">Tataouine</li></a>
+                <a href="#"><li class="lietat">Tunis</li></a>
+                <a href="#"><li class="lietat">Zaghouan</li></a>
+            </ul>
+
+        </div>
+
+        <div class="medium-4 cell">
+           {{ include('default/maptunisia.html.twig') }}
+        </div>
+
+        <div class="medium-6 cell">
+
+
+
+
+
+
+
+
+                <div class="social-links row">
+                    <div class="small-6 medium-4 columns text-center mobile-stack col4perso">
+                        <a href="#">
+
+                            <i class="fa fa-home" aria-hidden="true"></i>
+
+                            Immobilier
+
+                        </a>
+                    </div>
+
+                    <div class="small-6 medium-4 columns text-center mobile-stack col4perso">
+                        <a href="#"><i class="fa fa-car" aria-hidden="true"></i>Vehicules</a>
+                    </div>
+
+                    <div class="small-6 medium-4 columns text-center mobile-stack">
+                        <a href="#">
+                            <i class="fa fa-cog" aria-hidden="true"></i>
+
+                            Maison
+                        </a>
+                    </div>
+
+
+
+
+                    <div class="small-6 medium-4 columns text-center mobile-stack col4perso">
+                        <a href="#">
+
+                            <i class="fa fa-laptop" aria-hidden="true"></i>
+
+                            Informatique
+
+                        </a>
+                    </div>
+
+                    <div class="small-6 medium-4 columns text-center mobile-stack col4perso">
+                        <a href="#"><i class="fa fa-bicycle" aria-hidden="true"></i>Loisir</a>
+                    </div>
+
+                    <div class="small-6 medium-4 columns text-center mobile-stack">
+                        <a href="#">
+                            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+
+                            Emploi
+                        </a>
+                    </div>
+
+
+
+
+                    <div class="small-6 medium-4 columns text-center mobile-stack col4perso">
+                        <a href="#">
+
+                            <i class="fa fa-briefcase" aria-hidden="true"></i>
+
+                            Entreprise
+
+                        </a>
+                    </div>
+
+                    <div class="small-6 medium-4 columns text-center mobile-stack col4perso">
+                        <a href="#"><i class="fa fa-child" aria-hidden="true"></i>Habillement</a>
+                    </div>
+
+                    <div class="small-6 medium-4 columns text-center mobile-stack">
+                        <a href="#">
+                            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+
+                            Autres
+                        </a>
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+
+
+</body>

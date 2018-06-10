@@ -1,0 +1,1130 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
+    <style>
+        ul:not(.browser-default) {
+            padding-left: 0;
+            list-style-type: none;
+            padding: 50px !important;
+        }
+
+        div#p1 form {
+            width: 100%;
+        }
+
+        div#p2 form {
+            width: 100%;
+        }
+
+        .card.add-post {
+            display: inline-flex;
+            width:  100%;
+        }
+
+        .nosmid.r1 {
+            width: 50%;
+            background-color:  gold;
+        }
+
+        .nosmid.l1 {
+            width: 50%;
+            background-color:  red;
+        }
+
+        textarea#descP {
+            padding: 1rem;
+            height: 100px;
+            border: none;
+            overflow: scroll;
+            margin-bottom: 1rem;
+            background: #fafafa;
+        }
+
+        body{
+            background: #fff;
+            font-family: 'Raleway', sans-serif;
+        }
+        .navbar-items{
+            margin-left: 8rem;
+        }
+        .navbar-brand{
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
+        }
+        .navbar-background{
+            background: #9167CD !important;
+        }
+        .navbar-right-space{
+            padding-right: 3rem !important;
+        }
+        .navbar-search{
+            background: #fff !important;
+            color: #424242 !important;
+            border: none !important;
+            box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.3) !important;
+            border-radius: 3px !important;
+            padding-left: 15px !important;
+            width: 240px !important;
+            height: 40px !important;
+        }
+        .img-profile{
+            background: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+
+        }
+        .center-margin{
+            margin: 0 auto;
+        }
+        .image{
+            background: url("https://lh3.ggpht.com/sWL-oDXvjw3Ld0Dy8SsIpt6YMhMFoJnY-t-XBLh_7avXNLnWjiuymw65j7rG6t6D5JI=h900") center no-repeat !important;
+        }
+        .banner-div-style{
+            height: 450px;
+            margin-top: 4rem;
+        }
+        .profile-details{
+            background: #fff;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            margin-bottom: 0 !important;
+        }
+        .width-profile{
+            width: 85%;
+        }
+        .profile-img{
+            background: url('https://shellter-static.s3.amazonaws.com/static/img/default_user.jpg');
+            height: 120px;
+            width: 120px;
+            background-size: 100%;
+            position: absolute;
+            margin-left: 20px;
+            margin-top: -145px;
+        }
+        .profile-numbers{
+            text-align: left;
+        }
+        .profile-btns{
+            text-align: center;
+            margin-top: 27px;
+            margin-bottom: 21px;
+        }
+        .name{
+            margin-left: 21px;
+            margin-bottom: -13px;
+            margin-top: 15px;
+            color: #424242;
+        }
+        .designation{
+            margin-left: 21px;
+            color: #bbb;
+        }
+        .spacer-number{
+            float: left;
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+        .arc-btn-2{
+            padding: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background: #3F51B5;
+            border: none;
+            color: #fff;
+            width: 100px;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.3)
+        }
+        .arc-btn-2:hover{
+            padding: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background: #3F51B5;
+            border: none;
+            color: #fff;
+            width: 100px;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 5px 3px 0px rgba(0,0,0,0.3)
+        }
+        .arc-btn-2:focus{
+            padding: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background: #3F51B5;
+            border: none;
+            color: #fff;
+            width: 100px;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 5px 3px 0px rgba(0,0,0,0.3)
+        }
+        .arc-btn{
+            padding: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background: #9167cd;
+            border: none;
+            color: #fff;
+            border-radius: 2px;
+            width: 100px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.3)
+        }
+        .arc-btn:hover{
+            padding: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background: #9167cd;
+            border: none;
+            color: #fff;
+            border-radius: 2px;
+            width: 100px;
+            box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+            transition: all 0.3s ease-in-out;
+        }
+        .arc-btn:focus{
+            padding: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background: #9167cd;
+            border: none;
+            color: #fff;
+            border-radius: 2px;
+            width: 100px;
+            box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+            transition: all 0.3s ease-in-out;
+        }
+        @media (max-width:900px) {
+            .side-ads{
+                display: none !important;
+            }
+            .spacer-number{
+                float: left;
+                margin-left: 8px !important;
+                margin-right: 8px !important;
+            }
+        }
+
+        .search-box{
+            border: 1.25px solid rgba(255,255,255,0.4) !important;
+            padding-left: 10px !important;
+            border-radius: 5px !important;
+            min-width: 300px !important;
+        }
+        .search-box:focus{
+            border: 1.25px solid rgba(255,255,255,0.4) !important;
+            padding-left: 10px !important;
+            border-radius: 5px !important;
+            min-width: 300px !important;
+        }
+        .profile-wall{
+            background: url('{{ asset('espritback.jpg') }}');
+            background-size: cover;
+            box-shadow: 0px 2px 35px 0px rgba(0,0,0,0.15) !important;
+            height: 80px;
+        }
+        .profile-matter{
+            height: 205px;
+            margin-top: -1rem;
+            box-shadow: 0px 2px 35px 0px rgba(0,0,0,0.15) !important;
+        }
+        .profile-matter1{
+            margin-top: -1rem;
+            box-shadow: 0px 2px 35px 0px rgba(0,0,0,0.15) !important;
+        }
+        .profile-dp{
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            z-index: 100;
+            margin-left: 90px;
+            margin-top: -50px;
+        }
+        .text-profile{
+            padding-top: 3rem;
+            text-align: center;
+            font-weight: 900;
+            font-size: 15px;
+        }
+        .line{
+            color: #ccc;
+            border: none;
+            border-top: 1px solid #ccc;
+            margin-top: 4rem;
+        }
+        .line1{
+            color: #ccc;
+            border: none;
+            border-top: 1px solid #ccc;
+            margin-top: 1rem;
+        }
+        .spec{
+            padding: 10px;
+            margin-top: -1rem;
+            display: flex;
+        }
+        .followers-num{
+            font-size: 15px;
+            color: #424242;
+        }
+        .dummy1{
+            flex-grow: 1;
+        }
+        .add-post{
+            background: #fff;
+            height: 190px;
+            padding: 1.5rem;
+            box-shadow: 0px 2px 35px 0px rgba(0,0,0,0.15) !important;
+        }
+        .add-post1{
+            background: #fff;
+            padding: 1.5rem;
+            box-shadow: 0px 2px 35px 0px rgba(0,0,0,0.15) !important;
+        }
+        .text-area{
+            padding: 1rem;
+            height: 100px;
+            border:none;
+            overflow: scroll;
+            margin-bottom: 1rem;
+            background: #fafafa;
+        }
+        .text-area:focus{
+            padding: 1rem;
+            height: 100px;
+            border:none;
+            overflow: scroll;
+            margin-bottom: 1rem;
+            background: #fafafa;
+        }
+        .btn-image{
+            background: #3F51B5;
+            padding: 3px;
+            color: #fff;
+            float: left;
+        }
+
+        .post{
+            width: 70px;
+            text-align: center;
+            text-transform: uppercase;
+            background: #9167cd;
+        }
+        .post-header{
+            display: flex;
+        }
+        .post-name{
+            margin-left: 15px;
+            font-weight: 900;
+            margin-top: 12px;
+            font-size: 12px;
+            color: #424242;
+            flex-grow: 2;
+        }
+        .dp{
+            width: 35px;
+            height: 35px;
+            border-radius: 100px;
+        }
+        .post-time{
+            flex-grow: 0;
+            margin-top: 9px;
+            font-size: 12px;
+            color: #ccc;
+        }
+        .post-time1{
+            flex-grow: 0;
+            margin-left: 1rem;
+            margin-top: 6px;
+            font-size: 12px;
+            color: #ccc;
+        }
+        .post-image{
+            margin-top: 1rem;
+        }
+        .reactions{
+            display: flex;
+        }
+        .reactions-elements{
+            flex-grow: 0;
+            margin-right: 1rem;
+            color: #aaa;
+            font-size: 12px;
+        }
+        .reactions-elements1{
+            flex-grow: 1;
+        }
+        .icons{
+            font-size: 20px;
+        }
+        .suggestions-list{
+            max-height: 400px;
+            overflow: scroll;
+        }
+        .list-buddy{
+            display: flex;
+        }
+        .drop{
+            background: transparent;
+            box-shadow: none;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .drop:hover{
+            background: transparent;
+            box-shadow: none;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .drop:focus{
+            background: transparent;
+            box-shadow: none;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .img{
+            flex-grow: 0;
+            margin-right: 1rem;
+        }
+        .sug-name{
+            flex-grow: 1;
+            font-weight: 900;
+            margin-top: 6px;
+        }
+        .sug-name1{
+            flex-grow: 1;
+            margin-top: 6px;
+        }
+        /* Front-end Legos Workshop with Shay Howe
+================================================== */
+
+        /* HTML5 display definitions
+        ================================================== */
+
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        main,
+        nav,
+        section,
+        summary {
+            display: block;
+        }
+
+        /* Base
+        ================================================== */
+
+        html {
+            color: #555;
+            font: 14px/20px "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        body {
+            background: #eee;
+            margin: 0;
+        }
+
+        /* Simple grid
+        ================================================== */
+
+        *,
+        *:after,
+        *:before {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        /* Clearfix */
+
+        .group:before,
+        .group:after {
+            content: "";
+            display: table;
+        }
+        .group:after {
+            clear: both;
+        }
+
+        /* Box offset */
+
+        .box-offset {
+            background: #fff;
+            border: 1px solid #d4d4d4;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        /* Container */
+
+        .container {
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 980px;
+        }
+
+        /* Surgical classes */
+
+        .pull-left {
+            float: left;
+        }
+        .pull-right {
+            float: right;
+        }
+        .col-gutters {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .col-baselines {
+            padding-bottom: 20px;
+            padding-top: 20px;
+        }
+        .col-box {
+            padding: 20px;
+        }
+
+        /* Margins and paddings */
+
+        .margin-bottom {
+            margin-bottom: 20px;
+        }
+        .margin-top {
+            margin-top: 20px;
+        }
+        .pad-bottom {
+            padding-bottom: 20px;
+        }
+        .pad-top {
+            padding-top: 20px;
+        }
+
+        /* Typography
+        ================================================== */
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p {
+            margin: 0 0 20px 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        strong {
+            font-weight: 600;
+        }
+
+        /* Sizes */
+
+        h1,
+        .h-headline {
+            font-size: 36px;
+        }
+        h2,
+        .h-subheadline {
+            font-size: 21px;
+        }
+        h3,
+        .h-byline {
+            font-size: 18px;
+        }
+        h4,
+        .h-standfirst {
+            font-size: 16px;
+        }
+        h5,
+        .h-related {
+            font-size: 14px;
+        }
+        h6,
+        .h-promo {
+            font-size: 12px;
+        }
+
+        /* Colors */
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: #29abe2;
+        }
+        h5,
+        h6 {
+            color: #333;
+        }
+
+        /* Offset */
+
+        .text-subtle {
+            color: #999;
+            font-weight: normal;
+        }
+
+        /* Media
+        ================================================== */
+
+        img {
+            border: 0;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        /* Lists
+        ================================================== */
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Media object
+        ================================================== */
+
+        .media,
+        .media-body {
+            overflow: hidden;
+        }
+        .media-primary .media-object,
+        .media-secondary .media-object-alt {
+            float: right;
+            margin: 0 0 20px 20px;
+        }
+        .media-primary .media-object-alt,
+        .media-secondary .media-object {
+            float: left;
+            margin: 0 20px 20px 0;
+        }
+        .media-object img,
+        .media-object-alt img {
+            display: block;
+        }
+        .media-count {
+            color: #999;
+            float: right;
+            font-size: 10px;
+            line-height: 1;
+            padding: 3px 5px;
+        }
+
+        /* Primary */
+
+        .media-primary {
+            border-bottom: 1px solid #d4d4d4;
+        }
+        .media-primary .media {
+            border-top: 1px solid #d4d4d4;
+        }
+
+        /* Secondary */
+
+        .media-secondary .media-object img,
+        .media-secondary .media-object-alt img {
+            width: 40px;
+        }
+
+        /* Buttons
+        ================================================== */
+
+        .btn {
+            border: 1px solid rgba(0, 0, 0, .17);
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            font: 600 14px/20px "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 8px 12px;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: middle;
+        }
+
+        /* Types */
+
+        .btn-default,
+        .btn-success,
+        .btn-warning,
+        .btn-danger {
+            color: #fff;
+        }
+        .btn-default {
+            background-color: #08c;
+        }
+        .btn-success {
+            background-color: #62c462;
+        }
+        .btn-warning {
+            background-color: #fbb450;
+        }
+        .btn-danger {
+            background-color: #da4f49;
+        }
+        .btn-boring {
+            background-color: #fff;
+            color: #08c;
+        }
+
+        /* Sizes */
+
+        .btn-large {
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            -ms-border-radius: 6px;
+            -o-border-radius: 6px;
+            border-radius: 6px;
+            font-size: 18px;
+            padding: 11px 19px;
+        }
+        .btn-small {
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            -ms-border-radius: 3px;
+            -o-border-radius: 3px;
+            border-radius: 3px;
+            font-size: 12px;
+            padding: 4px 10px;
+        }
+        .btn-mini {
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            -ms-border-radius: 3px;
+            -o-border-radius: 3px;
+            border-radius: 3px;
+            font-size: 10px;
+            padding: 1px 8px;
+        }
+
+        /* Navigation
+        ================================================== */
+
+        .nav li {
+            float: left;
+            margin-right: 2px;
+        }
+        .nav a {
+            border: 1px solid transparent;
+            color: #08c;
+            display: block;
+            padding: 8px 12px;
+            text-decoration: none;
+        }
+        .nav a:hover,
+        .nav a:focus {
+            color: #62c462;
+        }
+        .nav-active a {
+            cursor: default;
+            font-weight: 600;
+        }
+
+        /* Tabs */
+
+        .nav-tabs li {
+            margin-bottom: -1px;
+        }
+        .nav-tabs a {
+            -webkit-border-radius: 5px 5px 0 0;
+            -moz-border-radius: 5px 5px 0 0;
+            -ms-border-radius: 5px 5px 0 0;
+            -o-border-radius: 5px 5px 0 0;
+            border-radius: 5px 5px 0 0;
+        }
+        .nav-tabs .nav-active a {
+            background-color: #fff;
+            border-color: #d4d4d4;
+            border-bottom-color: transparent;
+            color: #555;
+        }
+
+        /* Pills */
+
+        .nav-pills a {
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -ms-border-radius: 5px;
+            -o-border-radius: 5px;
+            border-radius: 5px;
+        }
+        .nav-pills .nav-active a {
+            background-color: #08c;
+            border-color: rgba(0, 0, 0, .17);
+            color: #fff
+        }
+
+        /* Stacked */
+
+        .nav-tabs-stacked li,
+        .nav-pills-stacked li {
+            float: none;
+            margin-right: 0;
+        }
+
+        /* Stacked tabs */
+
+        .nav-tabs-stacked a {
+            border-color: #d4d4d4;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            -ms-border-radius: 0;
+            -o-border-radius: 0;
+            border-radius: 0;
+        }
+        .nav-tabs-stacked li:first-child a {
+            -webkit-border-radius: 5px 5px 0 0;
+            -moz-border-radius: 5px 5px 0 0;
+            -ms-border-radius: 5px 5px 0 0;
+            -o-border-radius: 5px 5px 0 0;
+            border-radius: 5px 5px 0 0;
+        }
+        .nav-tabs-stacked li:last-child a {
+            -webkit-border-radius: 0 0 5px 5px;
+            -moz-border-radius: 0 0 5px 5px;
+            -ms-border-radius: 0 0 5px 5px;
+            -o-border-radius: 0 0 5px 5px;
+            border-radius: 0 0 5px 5px;
+        }
+
+        /* Stacked pills */
+
+        .nav-pills-stacked li + li {
+            margin-top: 3px;
+        }
+        .media-primary .media {
+            width: 100% !important;
+            border-top: 1px solid #d4d4d4;
+        }
+        /* Responsive
+        ================================================== */
+
+        @media all and (min-width: 680px) {
+
+            /* Columns */
+
+            .col-1-3,
+            .col-2-3 {
+                float: left;
+            }
+            .col-1-3 {
+                width: 33.33%;
+            }
+            .col-2-3 {
+                width: 66.66%;
+            }
+
+        }
+        li.media.col-gutters.pad-top.abcd2 {
+            padding: 20px;
+            background-color: #eeeeee;
+            margin: 11px;
+            width: 94% !important;
+        }
+
+        /*custom font*/
+        @import url(https://fonts.googleapis.com/css?family=Merriweather+Sans);
+
+        * {margin: 0; padding: 0;}
+
+        html, body {min-height: 100%;}
+
+
+
+        .breadcrumb {
+            /*centering*/
+            display: inline-block;
+            box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            border-radius: 5px;
+            /*Lets add the numbers for each link using CSS counters. flag is the name of the counter. to be defined using counter-reset in the parent element of the links*/
+            counter-reset: flag;
+        }
+
+        .breadcrumb a {
+            text-decoration: none;
+            outline: none;
+            display: block;
+            float: left;
+            font-size: 12px;
+            line-height: 36px;
+            color: white;
+            /*need more margin on the left of links to accomodate the numbers*/
+            padding: 0 10px 0 60px;
+            background: #666;
+            background: linear-gradient(#666, #333);
+            position: relative;
+        }
+        /*since the first link does not have a triangle before it we can reduce the left padding to make it look consistent with other links*/
+        .breadcrumb a:first-child {
+            padding-left: 46px;
+            border-radius: 5px 0 0 5px; /*to match with the parent's radius*/
+        }
+        .breadcrumb a:first-child:before {
+            left: 14px;
+        }
+        .breadcrumb a:last-child {
+            border-radius: 0 5px 5px 0; /*this was to prevent glitches on hover*/
+            padding-right: 20px;
+        }
+
+        /*hover/active styles*/
+        .breadcrumb a.active, .breadcrumb a:hover{
+            background: #333;
+            background: linear-gradient(#333, #000);
+        }
+        .breadcrumb a.active:after, .breadcrumb a:hover:after {
+            background: #333;
+            background: linear-gradient(135deg, #333, #000);
+        }
+
+        /*adding the arrows for the breadcrumbs using rotated pseudo elements*/
+        .breadcrumb a:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -18px; /*half of square's length*/
+            /*same dimension as the line-height of .breadcrumb a */
+            width: 36px;
+            height: 36px;
+            /*as you see the rotated square takes a larger height. which makes it tough to position it properly. So we are going to scale it down so that the diagonals become equal to the line-height of the link. We scale it to 70.7% because if square's:
+            length = 1; diagonal = (1^2 + 1^2)^0.5 = 1.414 (pythagoras theorem)
+            if diagonal required = 1; length = 1/1.414 = 0.707*/
+            transform: scale(0.707) rotate(45deg);
+            /*we need to prevent the arrows from getting buried under the next link*/
+            z-index: 1;
+            /*background same as links but the gradient will be rotated to compensate with the transform applied*/
+            background: #666;
+            background: linear-gradient(135deg, #666, #333);
+            /*stylish arrow design using box shadow*/
+            box-shadow:
+                    2px -2px 0 2px rgba(0, 0, 0, 0.4),
+                    3px -3px 0 2px rgba(255, 255, 255, 0.1);
+            /*
+                5px - for rounded arrows and
+                50px - to prevent hover glitches on the border created using shadows*/
+            border-radius: 0 5px 0 50px;
+        }
+        /*we dont need an arrow after the last link*/
+        .breadcrumb a:last-child:after {
+            content: none;
+        }
+        /*we will use the :before element to show numbers*/
+        .breadcrumb a:before {
+            content: counter(flag);
+            counter-increment: flag;
+            /*some styles now*/
+            border-radius: 100%;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            margin: 8px 0;
+            position: absolute;
+            top: 0;
+            left: 30px;
+            background: #444;
+            background: linear-gradient(#444, #222);
+            font-weight: bold;
+        }
+
+
+        .flat a, .flat a:after {
+            background: white;
+            color: black;
+            transition: all 0.5s;
+        }
+        .flat a:before {
+            background: white;
+            box-shadow: 0 0 0 1px #ccc;
+        }
+        .flat a:hover, .flat a.active,
+        .flat a:hover:after, .flat a.active:after{
+            background: #e8ff3b;
+        }
+
+
+        .breadcrumb {
+            display: inline-block;
+            box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            border-radius: 5px;
+            /* width: 100%; */
+            counter-reset: flag;
+            text-align: center !important;
+            /* padding-left: 54px; */
+        }
+
+
+        .row .col.m6 {
+            width: 75% !important;
+            margin-left: auto;
+            left: auto;
+            right: auto;
+        }
+        .avatar-container .avatar {
+            border-radius: 0;
+            border: 0;
+            height: auto;
+            width: 100%;
+            margin: 0;
+            align-self: center;
+        }
+        .identicon.s70 {
+            font-size: 25px;
+            padding-left: 5;
+            margin-left: 99px;
+            margin-top: -44px;
+            line-height: 65px;
+            z-index: 5;
+        }
+        .identicon {
+            text-align: center;
+            vertical-align: top;
+        }
+        .avatar {
+            -webkit-transition-property: none;
+            transition-property: none;
+            width: 65px;
+            height: 65px;
+            padding: 0;
+            background: #fdfdfd;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Content Starts here -->
+
+
+<div class="row" style="margin-top:3rem;width:90%;">
+    <div class="col s12 m3 l3">
+        <div>
+            <div class="card profile-wall"></div>
+            <div class="avatar s70 avatar-tile identicon" style="background-color: #F3E5F5; color: #555">
+                {{ app.user.nom|first|upper }}
+            </div>
+            <div class="card profile-matter">
+
+                <div class="text-profile">
+                    <h5 style="font-size:15px;font-weight:900;">{{ app.user.nom }} {{ app.user.prenom }}</h5>
+                    <h5 style="font-size:10px;font-weight:900;color:#ccc">Etudiant </h5>
+                    <hr class="line">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col s12 m6 l6">
+        <section class="box-offset  pad-top">
+            <h2 class="col-gutters">Contenue de la publication</h2>
+
+            <center>
+                <div class="breadcrumb flat">
+                    <a href="#" class="">Acceuil</a>
+                    <a href="{{ path('_test_anonyme_image') }}">Spotted</a>
+                    <a href="#" class="active">
+                        Contenue
+                    </a>
+                </div>
+            </center>
+            <!-- Prefixfree -->
+            <script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript" type="text/javascript"></script>
+
+
+
+
+            <ul class="media-primary">
+
+                {{ form_start(form) }}
+                {{ form_end(form) }}
+            </ul>
+
+
+
+
+
+
+        </section>
+
+    </div>
+
+</div>
+
+<!-- Dropdown Structure -->
+<ul id='dropdown1' class='dropdown-content'>
+    <li><a href="#!">Profile</a></li>
+    <li><a href="#!">Settings</a></li>
+    <li><a href="#!">Log out</a></li>
+</ul>
+<!-- Dropdown Structure -->
+<ul id='dropdown2' class='dropdown-content'>
+    <li><a href="#!">Save</a></li>
+    <li><a href="#!">Tag Friends</a></li>
+</ul>
+
+<!-- Content Ends here -->
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#p2").hide();
+        $("#p1").hide();
+        $('.tooltipped').tooltip({delay: 50});
+
+        $( "#ps" ).click(function() {
+            $("#zouz").hide();
+            $("#p1").show();
+            $("#p2").hide();
+        });
+        $( "#pi" ).click(function() {
+            $("#zouz").hide();
+            $("#p2").show();
+            $("#p1").hide();
+
+        });
+
+
+    });
+</script>
+<script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+
+</html>

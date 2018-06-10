@@ -1,0 +1,50 @@
+{% extends "admin/backbase.html.twig" %}
+
+{% block body %}
+<h3 style="text-align: center">Ajout d'un nouveau store</h3><br>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {% for type, flashes in app.session.flashbag.all %}
+                {% for flash in flashes %}
+                    <div class="alert alert-{{ type }} fade in">
+                        {{ flash }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {{ form_start(form) }}
+           <div class="form-group">
+               <div class="row">
+                   <div class="col-md-4"><label for="">Nom du Store</label></div>
+                   <div class="col-md-8">{{ form_widget(form.nomStore,{'attr':{'class':'form-control'}}) }}</div>
+               </div>
+           </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4"><label for="">Responsable du Store</label></div>
+                    <div class="col-md-8"><select name="storeUser" id="" required class="form-control">
+                            <option value="" selected disabled >Selectionner un responsable ..</option>
+                            {% for user in users %}
+                                <option value="{{ user.id }}">{{ user.username }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10"></div>
+                <div class="col-md-2">{{ form_widget(form.Ajouter,{'attr':{'class':'btn btn-primary'}}) }}</div>
+            </div>
+
+
+            {{ form_end(form) }}
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

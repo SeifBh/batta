@@ -1,0 +1,542 @@
+{% extends ":default:test.html.twig" %}
+
+{% block title %}Annonces{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <!-- start here -->
+
+    <style type="text/css">
+        .important { color: #336699; }
+        * {
+            box-sizing: border-box;
+        }
+        .col-sm-12 {
+    width: 100% !important;
+}
+
+.btn-large {
+    width: 100%;
+}
+.col-sm-12 img {
+
+    height: 67px !important;
+    width: 62px;
+    padding-left: 7px;
+    position: absolute;
+    left: 297px;
+    padding-bottom: 20px;
+
+}
+
+.panel-default > .panel-heading {
+    color: #333;
+    background-color: #fff !important;
+    border-color: #ffffff1a !important;
+}
+
+
+
+
+        body {
+            background-color: #f1f1f1;
+            padding: 20px;
+            font-family: Arial;
+        }
+
+        /* Center website */
+        .main {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 50px;
+            word-break: break-all;
+        }
+
+        .row {
+
+            margin: 10px -16px;
+            grid-template-columns: auto auto auto auto;
+        }
+
+        /* Add padding BETWEEN each column */
+        .row,
+        .row > .column {
+            padding: 8px;
+
+        }
+
+        /* Create three equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 33.33%;
+            display: none; /* Hide all elements by default */
+            word-wrap: break-word;
+
+        }
+
+        /* Clear floats after rows */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+
+        /* Content */
+        .content {
+            background-color: white;
+            padding: 5px;
+        }
+
+        /* The "show" class is added to the filtered elements */
+        .show {
+            display: block;
+        }
+
+        /* Style the buttons */
+        .btn {
+            border: none;
+            outline: none;
+            padding: 12px 16px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #ddd;
+        }
+
+        .btn.active {
+            background-color: #666;
+            color: white;
+        }
+        .label {
+            color: white;
+            padding: 8px;
+        }
+        .warning {
+            background-color: #ff9800;
+        }
+        .success {
+            background-color: #4CAF50;
+        }
+
+
+
+
+        html, body {
+        @import url(https://fonts.googleapis.com/css?family=Overlock);
+        }
+
+        .modal-con1 {
+            margin-top: 100px;
+
+            text-align: center;
+
+        }
+
+
+        .modal-con1 a {
+            padding: 1em;
+            margin-left: 2em;
+            margin-right: 2em;
+            border: 1px solid #fff;
+            border-radius: 10px;
+
+            display: inline-block;
+
+            background: #018eff;
+            box-shadow: 0px 5px 5px #17cccc;
+            color: #fff;
+
+            font-size: 1em;
+        }
+
+
+        .modal-con1 a:hover {
+
+            background:  #ffe6cc;
+            box-shadow: 0px 5px 5px #999999;
+            color: #333;
+
+        }
+
+
+        .modal  {
+            z-index: 9999;
+            left: 25%;
+            top: 100%;
+            position: fixed;
+            padding: 0 2em 1em;
+
+            display: block;
+            width: 40%;
+            height: 50%;
+            border-radius: 10px;
+            overflow: auto;
+
+            background: #ccc;
+            color: #000;
+
+            -webkit-transition: all 2s;
+            transition: all 2s;
+        }
+
+
+        :target {
+            left: 25% !important;
+            top: 5% !important;
+
+            visibility: visible !important;
+            width: 50% !important;
+            height: 84% !important;
+
+            opacity: 1 !important;
+        }
+
+
+
+        [data-transition="left"] {
+            left: -100%;
+            top: 25%;
+        }
+
+
+        [data-transition="right"] {
+            left: 100%;
+            top: 25%;
+        }
+
+
+        .modal [data-button="close"] {
+            top: 0px;
+            right: 0px;
+            position: absolute;
+            padding: 12px;
+
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            width: 14px;
+
+            -moz-box-shadow: 1px 1px 3px #000;
+            -webkit-box-shadow: 1px 1px 3px #000;
+            box-shadow: 1px 1px 3px #000;
+            color: #fff;
+            background: #000066;
+
+            font-weight: bold;
+            font-size: 1.5em;
+            line-height: 24px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .modal [data-button="close"]:hover {
+            background: #6666ff;
+            color: #000066;
+        }
+
+
+        img {
+            display: block;
+            float: left;
+
+            height: 100%;
+        }
+
+        .modal img {
+            margin-right: 1em;
+        }
+
+
+        .modal img {
+            display: block;
+            float: left;
+            height: 200px;
+            margin: 0 10px 0 0;
+            border: 1px solid #000066;
+            border-radius: 10px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="big-div">
+        <h1>Annonce</h1>
+    </div>
+
+
+
+
+    <div class="main">
+        <br>
+
+        <div id="myBtnContainer">
+            <button class="btn active" onclick="filterSelection('all')"> Toutes les annonces</button>
+            <button class="btn" onclick="filterSelection('covoiturage')"> Covoiturage</button>
+            <button class="btn" onclick="filterSelection('collocation')"> Collocation</button>
+            <button class="btn" onclick="filterSelection('objet')"> Objet trouvé/perdu</button>
+            <button class="btn" onclick="filterSelection('permutation')"> Permutation</button>
+        </div>
+
+        <!-- Portfolio Gallery Grid -->
+        <div class="row">
+            <div class="col-md-8">
+
+                {% for a in annonce %}
+
+                    {% if a.categorieA == "covoiturage" %}
+                        <div class="col-sm-12 column covoiturage">
+                            <div class="panel panel-default panel-front content">
+                                <div class="panel-heading">
+                                    {% if a.etat == "nonResolue" %}
+                                        <span class="label warning">{{ a.etat }}</span>
+                                    {% endif %}
+                                    {% if a.etat == "resolue" %}
+                                        <span class="label success">{{ a.etat }}</span>
+                                    {% endif %}
+                                    <h4 class="panel-title"><a HREF="#"><img src="{{ asset('images/ImageAnnonce/voiture.png') }}"></a></h4>
+                                </div>
+
+                                <div class="panel-body">
+
+                                    <b> <h4>{{ a.titreA }}</h4></b>
+                                    <h4>{{ a.descA }}</h4>
+
+                                    <div id="con1">
+
+                                        <div class="modal-con1">
+
+                                            <a href="#modalbox">Voir</a>
+                                        </div>
+
+                                        <div class="modal" id="modalbox" data-transition="left">
+                                            <a href="#" data-button="close">x</a>
+                                            <h2>Annonce :{{ a.titreA }}<br> Annoncé par<b> {{ a.idUser }}</b></h2>
+                                            <img src="{{ asset('images/ImageAnnonce/voiture.png') }}"/>
+                                            <p>{{ a.descA }}</p><br>
+                                            Contacter moi : {{ a.numTel }}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    {% elseif a.categorieA == "collocation" %}
+
+                        <div class="col-sm-12 column collocation">
+                            <div class="panel panel-default panel-front content">
+                                <div class="panel-heading">
+                                    {% if a.etat == "nonResolue" %}
+                                        <span class="label warning">{{ a.etat }}</span>
+                                    {% endif %}
+                                    {% if a.etat == "resolue" %}
+                                        <span class="label success">{{ a.etat }}</span>
+                                    {% endif %}
+                                    <h4 class="panel-title"><a HREF="#"><img src="{{ asset('images/ImageAnnonce/maison.png') }}"></a></h4>
+                                </div>
+
+                                <div class="panel-body">
+                                    <b><h4>{{ a.titreA }}</h4></b>
+                                    <h4>{{ a.descA }}</h4>
+                                    <div id="con1">
+
+                                        <div class="modal-con1">
+
+                                            <a href="#modalbox">Voir</a>
+                                        </div>
+
+                                        <div class="modal" id="modalbox" data-transition="left">
+                                            <a href="#" data-button="close">x</a>
+                                            <h2>Annonce :{{ a.titreA }}<br> Annoncé par<b> {{ a.idUser }}</b></h2>
+                                            <img src="{{ asset('images/ImageAnnonce/maison.png') }}"/>
+                                            <p>{{ a.descA }}</p><br>
+                                            Contacter moi : {{ a.numTel }}
+                                            <div id="googleMap1" style="width:400px;height:300px;"></div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    {% elseif a.categorieA == "permutation" %}
+
+                        <div class="col-sm-12 column permutation">
+                            <div class="panel panel-default panel-front content">
+                                <div class="panel-heading">
+                                    {% if a.etat == "nonResolue" %}
+                                        <span class="label warning">{{ a.etat }}</span>
+                                    {% endif %}
+                                    {% if a.etat == "resolue" %}
+                                        <span class="label success">{{ a.etat }}</span>
+                                    {% endif %}
+                                    <h4 class="panel-title"><a HREF="#"><img src="{{ asset('images/ImageAnnonce/vaVient.png') }}"></a></h4>
+                                </div>
+
+                                <div class="panel-body">
+                                    <b> <h4>{{ a.titreA }}</h4></b>
+                                    <h4>{{ a.descA }}</h4>
+                                    <div id="con1">
+
+                                        <div class="modal-con1">
+
+                                            <a href="#modalbox">Voir</a>
+                                        </div>
+
+                                        <div class="modal" id="modalbox" data-transition="left">
+                                            <a href="#" data-button="close">x</a>
+                                            <h2>Annonce :{{ a.titreA }}<br> Annoncé par<b> {{ a.idUser }}</b></h2>
+                                            <img src="{{ asset('images/ImageAnnonce/vaVient.png') }}"/>
+                                            <p>{{ a.descA }}</p><br>
+                                            Contacter moi : {{ a.numTel }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% else %}
+                    <div class="row">
+                        <div class="col-sm-12 column objet ABCDSEIF">
+                            <div class="panel panel-default panel-front content">
+                                <div class="panel-heading">
+                                    {% if a.etat == "nonResolue" %}
+                                        <span class="label warning ">{{ a.etat }}</span>
+                                    {% endif %}
+                                    {% if a.etat == "resolue" %}
+                                        <span class="label success ">{{ a.etat }}</span>
+                                    {% endif %}
+                                    <h4 class="panel-title"><a HREF="#"><img src="{{ asset('images/ImageAnnonce/question.png') }}"></a></h4>
+                                </div>
+
+                                <div class="panel-body">
+                                    <b> <h4>sssssssss{{ a.titreA }}</h4></b>
+                                    <h4>{{ a.descA }}</h4>
+                                    <div id="con1">
+
+                                        <div class="modal-con1">
+
+                                            <a href="#modalbox">Voir</a>
+                                        </div>
+
+                                        <div class="modal" id="modalbox" data-transition="left">
+                                            <a href="#" data-button="close">x</a>
+                                            <h2>Annonce :{{ a.titreA }}<br> Annoncé par<b> {{ a.idUser }}</b></h2>
+                                            <img src="{{ asset('images/ImageAnnonce/question.png') }}"/>
+                                            <p>{{ a.descA }}</p><br>
+                                            Contacter moi : {{ a.numTel }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endif %}
+
+                {% endfor %}
+                <!-- END GRID -->
+
+
+                <!-- END MAIN -->
+            </div>
+
+            <div class="col-md-4">
+                <a class="btn  btn-large btn-success">Ajouter une annonce</a><br><br>
+                <a class="btn btn-large btn-warning">Chercher une annonce</a><br><br>
+
+                <div class="grid1">
+                    <center>
+                        <font size="12 px"> <i aria-hidden="true" class="fa fa-car"></i>
+                            <p>{{ a1 }} Annonces de covoiturage</p>
+                        </font>
+                    </center>
+                </div>
+
+                <div class="grid1">
+                    <center>
+                        <font size="12 px"> <i aria-hidden="true" class="fa fa-home"></i>
+                            <p>{{ a2 }} Annonces de collocation</p>
+                        </font>
+                    </center>
+                </div>
+
+                <div class="grid1">
+                    <center>
+                        <font size="12 px"> <i aria-hidden="true" class="fa fa-question-circle"></i>
+                            <p>Objets perdus/trouvé</p>
+                            <p>{{ a3 }} Annonces des objets trouvés</p>
+                            <p>{{ a4 }} Annonces des objets perdus</p>
+                        </font>
+                    </center>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+    <script >
+        filterSelection("all")
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("column");
+            if (c == "all") c = "";
+            for (i = 0; i < x.length; i++) {
+                RemoveClass(x[i], "show");
+                if (x[i].className.indexOf(c) > -1) AddClass(x[i], "show");
+            }
+        }
+
+        function AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+            }
+        }
+
+        function RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                    arr1.splice(arr1.indexOf(arr2[i]), 1);
+                }
+            }
+            element.className = arr1.join(" ");
+        }
+
+
+        // Add active class to the current button (highlight it)
+        var btnContainer = document.getElementById("myBtnContainer");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function(){
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+
+        function myMap() {
+            var mapOptions1 = {
+                center: new google.maps.LatLng(36.898468, 10.189712),
+                zoom:9,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map1 = new google.maps.Map(document.getElementById("googleMap1"),mapOptions1);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMH2gh-DgOCc_hHDPLDg1A6zGmDbOIWGQ&callback=myMap"></script>
+
+{% endblock %}

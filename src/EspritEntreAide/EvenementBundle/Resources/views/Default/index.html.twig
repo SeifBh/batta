@@ -1,0 +1,71 @@
+{% extends ":default:test.html.twig" %}
+
+
+{% block title %}Evenements{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #336699; }
+
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="big-div">
+        <h1>Bienvenue dans l'interface de gestion des évenements </h1>
+    </div>
+    <br>
+
+
+    <div class="gallery" id="gallery">
+        <div class="container">
+            <div class="about-head text-center ">
+                <h3>La galerie des évènements</h3>
+            </div>
+            <a class="btn btn-primary" href="{{ path('_ajouter_events') }}">Ajouter un évènement</a>
+            <a class="btn btn-primary" href="{{ path('_afficher_events_passer') }}">Afficher les évènements passés</a>
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <a class="btn btn-primary" href="{{ path('afficherParticipations') }}">Afficher les évènements auxquels je participe</a>
+            {% endif %}
+            <hr>
+            <a class="btn btn-primary" href="{{ path('evenement_homepage') }}"><i class="fas fa-th-large"></i></a>
+            <a class="btn btn-primary" href="{{ path('_afficher_events') }}"><i class="fas fa-list-ul"></i></a>
+            <hr>
+            <h1>Recherche dans les évènements à venir </h1>
+          <center> Rechercher: <form id="form_recherche" action="{{ path('evenement_homepage') }}" method="post">
+            <input type="text" id="recherche">
+            </form>
+          </center>
+            <div id="resultats_recherche" class="gallery-info">
+                {% include '@Evenement/Default/indexxx.html.twig' with {'events' : events} %}
+                <div class="clearfix"> </div>
+            </div>
+
+            <script type="text/javascript">
+                $("#form_recherche").keyup(function(){
+                    var motcle=$("#recherche").val();
+
+                        var DATA = 'motcle=' + motcle;
+                        $.ajax({
+                            type: "POST",
+                            url: "{{ path('evenement_homepage')}}",
+                            data: DATA,
+                            cache: false,
+                            success: function(data){
+                                $('#resultats_recherche').html(data);
+                            }
+                        });
+
+                    return false;
+                });
+            </script>
+
+
+        </div>
+    </div>
+
+
+
+   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+
+{% endblock %}

@@ -1,0 +1,44 @@
+_list_spotted_admin:
+    path:     /
+    defaults: { _controller: SpottedBundle:Default:adminListSpotted }
+
+_delete_all_spotted:
+    path:     /deleteAll
+    defaults: { _controller: SpottedBundle:Default:deleteAll }
+
+
+_ajoutSpottedAdmin:
+    path:     /ajout
+    defaults: { _controller: SpottedBundle:Default:ajoutAdmin }
+
+
+_rechercheAjax:
+    path:     /recherche
+    defaults: { _controller: SpottedBundle:Default:RechercheAjax }
+
+
+_modifspottedAdmin:
+    path:     /modifspotted/{id}
+    defaults: { _controller: SpottedBundle:Default:modifSpottedAdmin }
+
+
+_cospoted:
+    path:     /content/{id}
+    defaults: { _controller: SpottedBundle:Default:contentSpottedAdmin }
+
+
+
+
+_deletespottedAdmin:
+    path:     /supprimerspotted/{id}
+    defaults: { _controller: SpottedBundle:Default:supprimerSpottedAdmin }
+
+_clearcommentsAdmin:
+    path:     /clear/{id}
+    defaults: { _controller: SpottedBundle:Default:clearCommentsAdmin }
+
+
+
+
+
+

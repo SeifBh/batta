@@ -1,0 +1,87 @@
+{% extends ":default:test.html.twig" %}
+
+
+{% block title %}Liste des demandes{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #336699; }
+
+    </style>
+{% endblock %}
+{% block content %}
+<h1>liste des demandes</h1>
+    <a style="float: right" href="{{ path('demande_new') }}" class="btn btn-primary btn-sm">Ajouter demande</a>
+    <br>
+    Rechercher demande :
+    <input type="text" placeholder="store" onkeyup="search()" id="store">
+    <input type="text" placeholder="date d'ajout" onkeyup="search()" id="date">
+<table class="table">
+    <tr>
+        <th>id</th>
+        <th>nombre copies</th>
+        <th>date d'ajout de la demande</th>
+        <th>store</th>
+        <th>enseignant</th>
+        <th>etat</th>
+
+        <th>document</th>
+    </tr>
+    <tbody id="table">
+    {% for demande in demandes %}
+        <tr>
+            <td>{{ demande.id }}</td>
+            <td>{{ demande.nbrCopie }}</td>
+            <td>{{ demande.dateCreation|date('Y-m-d') }}</td>
+            <td>{{ demande.idStore.nomStore }}</td>
+            <td>{{ demande.idUser.username }}</td>
+            <td>
+                {% if demande.etatDemande=="" %}
+                    En attente
+                {% else  %}
+                    {{ demande.etatDemande }}
+                {% endif %}
+            </td>
+
+            <td><a href="{{ path('demande_detail',{'id':demande.id}) }}">document</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    {{ knp_pagination_render(demandes) }}
+{% endblock %}
+
+{% block script %}
+    {{ parent() }}
+    <script>
+        function search() {
+            $.ajax({
+                url: "{{ path('demande_search_teacher') }}",
+                method: "POST",
+                data: "date="+ $("#date").val()+"&store="+$("#store").val(),
+                success: function (data) {
+                    $("#table").html("");
+                    $.each(data,function (index,element) {
+                        pathDetail="{{ path('demande_detail',{'id':'demandeId'}) }}";
+                        pathDetail=pathDetail.replace('demandeId',element.id);
+                        pathDel="{{ path('demande_remove',{'id':'demandeId'}) }}";
+                        pathDel=pathDel.replace('demandeId',element.id);
+                        $("#table").append(`
+                        <tr>
+                        <td>`+element.id+`</td>
+                        <td>`+element.nbrCopie+`</td>
+                        <td>`+element.dateCreation.date+`</td>
+                        <td>`+element.nomStore+`</td>
+                        <td>`+element.username+`</td>
+                        <td>`+element.etatDemande+`</td>
+
+                        <td><a href="`+pathDetail+`">document</a></td>
+</tr>
+                        `);
+
+                    })
+                }
+            })
+        }
+    </script>
+{% endblock script %}

@@ -1,0 +1,8 @@
+{% for evt in events %}
+    <div class="col-md-3 gallery-grids" style="height: 250px; width: 350px">
+        <a href="{{ path('_afficher_un_event',{'id': evt.id}) }}"  >
+            <img alt="" class="img-responsive zoom-img"  src="{{ asset('uploads/images/' ~ evt.image) }} " height="400" width="500">
+            {{ evt.titreE }}
+        </a>
+    </div>
+{% endfor %}

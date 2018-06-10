@@ -1,0 +1,195 @@
+
+{{ form_start(form0) }}
+<script src="{{  asset('assets/js/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="http://www.datejs.com/build/date.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+    $(function(){
+        $("#espritentreaide_spottedbundle_publication_descP").keyup(
+            function(){
+                abcd =  $("#espritentreaide_spottedbundle_publication_descP").val();
+                DATA = 's='+abcd;
+                //alert(abcd);
+                $.ajax({
+
+                    url : '{{ path("_rechercheAjax") }}',
+                    data:DATA,
+                    success : function(response){
+                        $("#simple-table").html(
+                            "<table id='tab' border='1' class='table  table-bordered table-hover'>" +
+                            "        <tr>\n" +
+                            "            <thead>" +
+                            "            <th> Id </th>\n" +
+                            "            <th> Description </th>\n" +
+                            "            <th><i class='ace-icon fa fa-clock-o bigger-110 hidden-480'></i> Date Creation </th>\n" +
+                            "            <th><i class='ace-icon fa fa-clock-o bigger-110 hidden-480'></i> Date Modification </th>\n" +
+                            "            <th> Author </th>\n" +
+                            "            <th>  </th>\n" +
+
+                            "            </thead>" +
+
+
+
+                            "\n" +
+                            "</tr>" +
+                            "" +
+                            "</table>"
+                        );
+                        $.each(response,function(k,el){
+
+                            $('#simple-table').append(
+                                "<tbody>" +
+                                "<tr class=''>" +
+                                "<td class='center'>"+el.id+"</td>"+
+                                "<td class='center'>"+el.descP+"</td>"+
+                                "<td class='center'>"+Date.parse(el.dateP)+"</td>"+
+                                "<td class='center'>"+Date.parse(el.dateModif)+"</td>"+
+                                "<td class='center'><span class='label label-sm label-inverse arrowed-in'>"+el.idUser.nom +" "+ el.idUser.prenom + "</span> </td>"+
+                                "<td class='center'><a class='btn btn-xs btn-success' href='#'> <i class='ace-icon fa fa-check bigger-120'></i> </a><a class='btn btn-xs btn-info' href='#'> <i class='ace-icon fa fa-pencil bigger-120'></i> </a><a class='btn btn-xs btn-danger' href='#'> <i class='ace-icon fa fa-pencil bigger-120'></i> </a></td>"+
+
+
+
+                                "</tbody>"+
+
+                                "</tr>"
+                            )
+                        })
+
+
+                    },
+                })
+            }
+
+        );
+    });
+</script>
+
+{{ form_end(form0) }}
+<div id="a5">.. </div>
+<style>
+    span {
+        font-size: 12px !important;
+    }
+</style>
+<div class="col-xs-12">
+    <a href="{{ path('_delete_all_spotted') }}">Supprimer tous les publication</a>
+    <table id="simple-table" class="table  table-bordered table-hover">
+        <thead>
+        <tr>
+
+            <th class="detail-col">Id</th>
+            <th>Description</th>
+            <th>
+                <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+
+                created at
+            </th>
+            <th> <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+                updated at</th>
+
+
+            <th>author</th>
+
+            <th></th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+
+
+
+
+
+
+
+
+
+        {% for o in listspotted %}
+
+
+            <tr class="">
+
+                <td class="center">{{ o.id }}
+
+                </td>
+
+                <td>
+                    {% if o.descP != "" %}
+                        <a href="#">{{ o.descP|raw }}</a>
+                    {% else %}
+                        imagehre
+                    {% endif %}
+                </td>
+                <td>{{ o.dateP|ago }}</td>
+                <td>{{ o.dateModif|ago }}</td>
+
+
+                <td class="hidden-480">
+                    <span class="label label-sm label-inverse arrowed-in">{{ o.idUser.nom }} {{ o.idUser.prenom }}</span>
+                </td>
+
+                <td>
+                    <div class="hidden-sm hidden-xs btn-group">
+                        <button class="btn btn-xs btn-success">
+                            <i class="ace-icon fa fa-check bigger-120"></i>
+                        </button>
+
+                        <button class="btn btn-xs btn-info">
+                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                        </button>
+
+                        <button class="btn btn-xs btn-danger">
+                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                        </button>
+
+
+                    </div>
+
+                    <div class="hidden-md hidden-lg">
+                        <div class="inline pos-rel">
+                            <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                <li>
+                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="" data-original-title="View">
+																			<span class="blue">
+																				<i class="ace-icon fa fa-search-plus bigger-120"></i>
+																			</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit">
+																			<span class="green">
+																				<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																			</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="" data-original-title="Delete">
+																			<span class="red">
+																				<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																			</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {%else%}
+            <tr>
+                <td colspan="6"><B><I>There is no publication spotted here saved .</I></B></td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+</div>

@@ -1,0 +1,38 @@
+{% extends "admin/backbase.html.twig" %}
+
+{% block body %}
+    {% for type, flashes in app.session.flashbag.all %}
+        {% for flash in flashes %}
+            <div class="alert alert-{{ type }} fade in">
+                {{ flash }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+<table class="table">
+{{ form_start(formDocument) }}
+<tr>
+<th><label for="">nombre copie</label></th>
+<td>{{ form_widget(form.nbrCopie) }}<br></td>
+</tr>
+<tr>
+    <th> <label for="">store</label></th>
+<td>{{ form_widget(form.idStore) }}<br></td>
+</tr>
+<tr>
+    <th><label for="">deadline</label></th>
+<td>{{ form_widget(form.deadline) }}<br></td>
+</tr>
+<tr>
+    <th><label for="">nom ducument</label></th>
+<td>{{ form_widget(formDocument.nomDoc) }}<br></td>
+</tr>
+<tr>
+   <th> <label for="">document</label></th>
+<td>{{ form_widget(formDocument.file) }}<br></td>
+</tr>
+</table>
+    <input type="submit" value="Ajouter" align="center">
+{{ form_end(formDocument) }}
+
+
+{% endblock %}

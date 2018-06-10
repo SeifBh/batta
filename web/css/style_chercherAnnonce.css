@@ -1,0 +1,81 @@
+.con2 {
+    border: 2px solid #ccc;
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 16px;
+    margin: 16px 0;
+}
+
+/* Clear floats after con2s */
+.con2::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Float images inside the con2 to the left. Add a right margin, and style the image as a circle */
+.con2 img {
+    float: left;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+/* Increase the font-size of a span element */
+.con2 span {
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+/* Add media queries for responsiveness. This will center both the text and the image inside the container */
+@media (max-width: 500px) {
+    .con2 {
+        text-align: center;
+
+    }
+
+    .con2 img {
+        margin: auto;
+        float: none;
+        display: block;
+    }
+}
+
+.btn {
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    padding: 10px 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.info {
+    border-color: #2196F3;
+    border-radius: 5px;
+    color:#a5dce4;
+}
+
+.info:hover {
+    background: #2196F3;
+    color: white;
+}
+
+.danger {
+    border-color: #f44336;
+    color: red
+}
+
+.danger:hover {
+    background: #f44336;
+    color: white;
+}
+
+.success {
+    border-color: #4CAF50;
+    color: green;
+}
+
+.success:hover {
+    background-color: #4CAF50;
+    color: white;
+}

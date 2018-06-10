@@ -1,0 +1,101 @@
+{% extends ":default:test.html.twig" %}
+
+
+{% block title %}Espace Admin: Add club{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #336699; }
+
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="big-div">
+        <h1>Ajouter un Club</h1>
+    </div>
+        <center>
+                    {{ form_start(form) }}
+                    <table class="table">
+
+                        <tr>
+
+                            <th>Nom de club:</th>
+                            <td>{{ form_widget(form.nomC) }} </td>
+                        </tr>
+
+                        <tr>
+                            <th>Mail de club:</th>
+                            <td>{{ form_widget(form.mailC) }} </td>
+                        </tr>
+
+                        <tr>
+                            <th>Responsable de club :</th>
+                            <td>{{ form_widget(form.idUser) }} </td>
+                        </tr>
+
+                        <tr>
+                            <th>Description  de club :</th>
+                            <td>{{ form_widget(form.descC) }} </td>
+                        </tr>
+
+                        <tr>
+                            <th>Date de Creation de club :</th>
+                            <td>{{ form_widget(form.dateCreation) }} </td>
+                        </tr>
+
+                        <tr>
+                            <th>Photo de club :</th>
+                            <td>{{ form_widget(form.image) }} </td>
+                        </tr>
+
+
+
+
+                        <tr>
+                            <th>Valider votre Modification :</th>
+                            <td>{{ form_widget(form.Ajouter) }} </td>
+                        </tr>
+
+                    </table>
+
+                    {{ form_end(form) }}
+
+
+                    </tbody>
+                </table>
+                <!-- div.dataTables_borderWrap -->
+            </div>
+        </div>
+
+
+
+
+        <span style="alignment: right"></span>
+        <script src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+        <script src="{{ asset('js/jquery-ui-1.9.2.custom.min.js') }}"></script>
+        <script src="{{ asset('js/jquery-migrate-1.2.1.min.js') }}"></script>
+
+        <!--data table-->
+        <script type="text/javascript" src="{{ asset('js/data-tables/jquery.dataTables.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/data-tables/DT_bootstrap.js') }}"></script>
+
+        <!--script for editable table-->
+        <script src="{{ asset('js/editable-table.js') }}"></script>
+        <script>
+            jQuery(document).ready(function() {
+                EditableTable.init();
+            });
+        </script>
+        <link rel="stylesheet" href="{{ asset('js/data-tables/DT_bootstrap.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style-table.css') }}" />
+        <br>
+        <br>
+        <br>
+
+    </center>
+    <p class="important">
+
+    </p>
+{% endblock %}

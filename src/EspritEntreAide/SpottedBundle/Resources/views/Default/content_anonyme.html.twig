@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
+    <style>
+        div#p1 form {
+            width: 100%;
+        }
+
+        div#p2 form {
+            width: 100%;
+        }
+
+        .card.add-post {
+            display: inline-flex;
+            width:  100%;
+        }
+
+        .nosmid.r1 {
+            width: 50%;
+            background-color:  gold;
+        }
+
+        .nosmid.l1 {
+            width: 50%;
+            background-color:  red;
+        }
+
+        textarea#descP {
+            padding: 1rem;
+            height: 100px;
+            border: none;
+            overflow: scroll;
+            margin-bottom: 1rem;
+            background: #fafafa;
+        }
+
+        body{
+            background: #fff;
+            font-family: 'Raleway', sans-serif;
+        }
+        .navbar-items{
+            margin-left: 8rem;
+        }
+        .navbar-brand{
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
+        }
+        .navbar-background{
+            background: #9167CD !important;
+        }
+        .navbar-right-space{
+            padding-right: 3rem !important;
+        }
+        .navbar-search{
+            background: #fff !important;
+            color: #424242 !important;
+            border: none !important;
+            box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.3) !important;
+            border-radius: 3px !important;
+            padding-left: 15px !important;
+            width: 240px !important;
+            height: 40px !important;
+        }
+        .img-profile{
+            background: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+
+        }
+        .center-margin{
+            margin: 0 auto;
+        }
+        .image{
+            background: url("https://lh3.ggpht.com/sWL-oDXvjw3Ld0Dy8SsIpt6YMhMFoJnY-t-XBLh_7avXNLnWjiuymw65j7rG6t6D5JI=h900") center no-repeat !important;
+        }
+        .banner-div-style{
+            height: 450px;
+            margin-top: 4rem;
+        }
+        .profile-details{
+            background: #fff;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            margin-bottom: 0 !important;
+        }
+        .width-profile{
+            width: 85%;
+        }
+        .profile-img{
+            background: url('https://shellter-static.s3.amazonaws.com/static/img/default_user.jpg');
+            height: 120px;
+            width: 120px;
+            background-size: 100%;
+            position: absolute;
+            margin-left: 20px;
+            margin-top: -145px;
+        }
+        .profile-numbers{
+            text-align: left;
+        }
+        .profile-btns{
+            text-align: center;
+            margin-top: 27px;
+            margin-bottom: 21px;
+        }
+        .name{
+            margin-left: 21px;
+            margin-bottom: -13px;
+            margin-top: 15px;
+            color: #424242;
+        }
+        .designation{
+            margin-left: 21px;
+            color: #bbb;
+        }
+        .spacer-number{
+            float: left;
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+        .arc-btn-2{
+            padding: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background: #3F51B5;
+            border: none;
+            color: #fff;
+            width: 100px;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.3)
+        }
+        .arc-btn-2:hover{
+            padding: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background: #3F51B5;
+            border: none;
+            color: #fff;
+            width: 100px;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 5px 3px 0px rgba(0,0,0,0.3)
+        }
+        .arc-btn-2:focus{
+            padding: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background: #3F51B5;
+            border: none;
+            color: #fff;
+            width: 100px;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 5px 3px 0px rgba(0,0,0,0.3)
+        }
+        .arc-btn{
+            padding: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background: #9167cd;
+            border: none;
+            color: #fff;
+            border-radius: 2px;
+            width: 100px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.3)
+        }
+        .arc-btn:hover{
+            padding: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background: #9167cd;
+            border: none;
+            color: #fff;
+            border-radius: 2px;
+            width: 100px;
+            box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+            transition: all 0.3s ease-in-out;
+        }
+        .arc-btn:focus{
+            padding: 5px;
+            padding-left: 15px;
+            padding-right: 15px;
+            background: #9167cd;
+            border: none;
+            color: #fff;
+            border-radius: 2px;
+            width: 100px;
+            box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+            transition: all 0.3s ease-in-out;
+        }
+        @media (max-width:900px) {
+            .side-ads{
+                display: none !important;
+            }
+            .spacer-number{
+                float: left;
+                margin-left: 8px !important;
+                margin-right: 8px !important;
+            }
+        }
+
+        .search-box{
+            border: 1.25px solid rgba(255,255,255,0.4) !important;
+            padding-left: 10px !important;
+            border-radius: 5px !important;
+            min-width: 300px !important;
+        }
+        .search-box:focus{
+            border: 1.25px solid rgba(255,255,255,0.4) !important;
+            padding-left: 10px !important;
+            border-radius: 5px !important;
+            min-width: 300px !important;
+        }
+        .profile-wall{
+            background: url('https://wallpaperbrowse.com/media/images/eiffel-tower-wallpaper-18.jpg') center no-repeat;
+            background-size: cover;
+            box-shadow: 0px 2px 35px 0px rgba(0,0,0,0.15) !important;
+            height: 80px;
+        }
+        .profile-matter{
+            height: 205px;
+            margin-top: -1rem;
+            box-shadow: 0px 2px 35px 0px rgba(0,0,0,0.15) !important;
+        }
+        .profile-matter1{
+            margin-top: -1rem;
+            box-shadow: 0px 2px 35px 0px rgba(0,0,0,0.15) !important;
+        }
+        .profile-dp{
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            z-index: 100;
+            margin-left: 90px;
+            margin-top: -50px;
+        }
+        .text-profile{
+            padding-top: 3rem;
+            text-align: center;
+            font-weight: 900;
+            font-size: 15px;
+        }
+        .line{
+            color: #ccc;
+            border: none;
+            border-top: 1px solid #ccc;
+            margin-top: 4rem;
+        }
+        .line1{
+            color: #ccc;
+            border: none;
+            border-top: 1px solid #ccc;
+            margin-top: 1rem;
+        }
+        .spec{
+            padding: 10px;
+            margin-top: -1rem;
+            display: flex;
+        }
+        .followers-num{
+            font-size: 15px;
+            color: #424242;
+        }
+        .dummy1{
+            flex-grow: 1;
+        }
+        .add-post{
+            background: #fff;
+            height: 190px;
+            padding: 1.5rem;
+            box-shadow: 0px 2px 35px 0px rgba(0,0,0,0.15) !important;
+        }
+        .add-post1{
+            background: #fff;
+            padding: 1.5rem;
+            box-shadow: 0px 2px 35px 0px rgba(0,0,0,0.15) !important;
+        }
+        .text-area{
+            padding: 1rem;
+            height: 100px;
+            border:none;
+            overflow: scroll;
+            margin-bottom: 1rem;
+            background: #fafafa;
+        }
+        .text-area:focus{
+            padding: 1rem;
+            height: 100px;
+            border:none;
+            overflow: scroll;
+            margin-bottom: 1rem;
+            background: #fafafa;
+        }
+        .btn-image{
+            background: #3F51B5;
+            padding: 3px;
+            color: #fff;
+            float: left;
+        }
+
+        .post{
+            width: 70px;
+            text-align: center;
+            text-transform: uppercase;
+            background: #9167cd;
+        }
+        .post-header{
+            display: flex;
+        }
+        .post-name{
+            margin-left: 15px;
+            font-weight: 900;
+            margin-top: 12px;
+            font-size: 12px;
+            color: #424242;
+            flex-grow: 2;
+        }
+        .dp{
+            width: 35px;
+            height: 35px;
+            border-radius: 100px;
+        }
+        .post-time{
+            flex-grow: 0;
+            margin-top: 9px;
+            font-size: 12px;
+            color: #ccc;
+        }
+        .post-time1{
+            flex-grow: 0;
+            margin-left: 1rem;
+            margin-top: 6px;
+            font-size: 12px;
+            color: #ccc;
+        }
+        .post-image{
+            margin-top: 1rem;
+        }
+        .reactions{
+            display: flex;
+        }
+        .reactions-elements{
+            flex-grow: 0;
+            margin-right: 1rem;
+            color: #aaa;
+            font-size: 12px;
+        }
+        .reactions-elements1{
+            flex-grow: 1;
+        }
+        .icons{
+            font-size: 20px;
+        }
+        .suggestions-list{
+            max-height: 400px;
+            overflow: scroll;
+        }
+        .list-buddy{
+            display: flex;
+        }
+        .drop{
+            background: transparent;
+            box-shadow: none;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .drop:hover{
+            background: transparent;
+            box-shadow: none;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .drop:focus{
+            background: transparent;
+            box-shadow: none;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .img{
+            flex-grow: 0;
+            margin-right: 1rem;
+        }
+        .sug-name{
+            flex-grow: 1;
+            font-weight: 900;
+            margin-top: 6px;
+        }
+        .sug-name1{
+            flex-grow: 1;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Content Starts here -->
+
+<nav class="navbar-background">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo navbar-brand">Arc</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down navbar-items">
+            <li class="active"><a href="" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="News"><i class="material-icons">chrome_reader_mode</i></a></li>
+            <li><a href="" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Messages"><i class="material-icons">mail</i></a></li>
+            <li><a href="" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Global"><i class="material-icons">public</i></a></li>
+        </ul>
+        <ul id="nav-mobile" class="right hide-on-med-and-down" >
+            <li style="margin-right:1.5rem;"><input id="search" type="text" placeholder="Search here ..." class="search-box"/></li>
+            <li><a class='dropdown-button btn drop' href='#' data-activates='dropdown1'><i class="material-icons">more_vert</i></a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="row" style="margin-top:3rem;width:90%;">
+    <div class="col s12 m3 l3">
+        <div>
+            <div class="card profile-wall"></div>
+            <div style="display:flex;">
+                <img src="https://lh6.googleusercontent.com/-eo9jm7ZQ5sg/AAAAAAAAAAI/AAAAAAAAAt8/TVCBAudZIPM/photo.jpg" class="profile-dp" alt="">
+            </div>
+            <div class="card profile-matter">
+                <div class="text-profile">
+                    <h5 style="font-size:15px;font-weight:900;">LITSON THOMAS</h5>
+                    <h5 style="font-size:10px;font-weight:900;color:#ccc">WEB DEVELOPER</h5>
+                    <hr class="line">
+                    <div class="spec">
+                        <a href="#" style="color:#525252;font-size:10px;flex-grow:1;"><strong class="followers-num">23</strong></br>Photos</a>
+                        <a href="#" style="color:#525252;font-size:10px;flex-grow:1;"><strong class="followers-num">7</strong></br>Publications</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:3rem;">
+            <div class="card profile-matter1">
+                <div class="suggestions-list" style="padding:1rem;">
+                    <h6 style="font-weight:900;text-transform:uppercase;">Suggestions</h6>
+                    <hr class="line1">
+                    <div class="list-buddy">
+                        <img class="dp img" src="http://uog.edu.pk/uog/img/dummy_profile.png" alt="">
+                        <p class="sug-name">Douglas Davis</p>
+                    </div>
+                    <div class="list-buddy">
+                        <img class="dp img" src="http://uog.edu.pk/uog/img/dummy_profile.png" alt="">
+                        <p class="sug-name">Mint</p>
+                    </div>
+                    <div class="list-buddy">
+                        <img class="dp img" src="http://uog.edu.pk/uog/img/dummy_profile.png" alt="">
+                        <p class="sug-name">Justin</p>
+                    </div>
+                    <div class="list-buddy">
+                        <img class="dp img" src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAeQAAAAJDVkMDUxZmJkLWMyMTYtNDQxYi1hMmY2LWJjZTA5MDg5OTkyOA.jpg" alt="">
+                        <p class="sug-name">Amal Shaju</p>
+                    </div>
+                    <div class="list-buddy">
+                        <img class="dp img" src="http://uog.edu.pk/uog/img/dummy_profile.png" alt="">
+                        <p class="sug-name">Alex Joseph</p>
+                    </div>
+                    <div class="list-buddy">
+                        <img class="dp img" src="http://uog.edu.pk/uog/img/dummy_profile.png" alt="">
+                        <p class="sug-name">Edwin Jose</p>
+                    </div>
+                    <div class="list-buddy">
+                        <img class="dp img" src="https://media.licdn.com/mpr/mpr/shrink_100_100/AAEAAQAAAAAAAAXwAAAAJGExMmZkZDQyLWUxN2YtNDg4OC1hYzYxLTRiZDhmNTZlZTRlZQ.jpg" alt="">
+                        <p class="sug-name">Jasir Ahammed</p>
+                    </div>
+                    <div class="list-buddy">
+                        <img class="dp img" src="http://uog.edu.pk/uog/img/dummy_profile.png" alt="">
+                        <p class="sug-name">Arun Joseph</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m6 l6">
+        <div class="card add-post" id="zouz">
+
+            <div class="nosmid r1">
+                <input type="button" value="Publication secrete" class="btn-pb" id="ps">
+            </div>
+            <div class="nosmid l1">
+                <input type="button" value="Publication Image" class="btn-pb" id="pi">
+
+            </div>
+
+
+
+
+
+        </div>
+        <div class="card add-post p1" id="p1">
+            {{ form_start(form) }}
+            {{ form_row(form.descP) }}
+            <input type="submit" value="send publication secrete">
+            {{ form_end(form) }}
+        </div>
+        <div class="card add-post p2" id="p2">
+            {{ form_start(form2) }}
+            {{ form_row(form2.image) }}
+            <input type="submit" value="send publication image">
+            {{ form_end(form2) }}
+
+        </div>
+        {% for m in listspotted %}
+
+            <div class="taw narja3lek">
+                {{ form_start(form3) }}
+                {{ form_end(form3) }}
+
+                <!-- <input type="submit" id="filterarr" value="ALL" class="btnpi">
+                 <input type="submit" id="filterpublication" value="Publication" class="btnpi">
+                 <input type="submit" id="filterimage" value="Image" class="btnpi">!-->
+            </div>
+            <div class="card add-post1">
+                <div class="post-header">
+                    <img class="dp" src="https://lh6.googleusercontent.com/-eo9jm7ZQ5sg/AAAAAAAAAAI/AAAAAAAAAt8/TVCBAudZIPM/photo.jpg" alt="">
+                    <h6 class="post-name">
+                        {% if (is_granted('ROLE_ENSEIGNANT'))   %}
+                            Username here
+                        {% else %}
+                            Hidden name
+                        {% endif %}
+                    </h6>
+                    <p class="post-time">1 hours ago</p>
+                    <a class="post-time1" href="#"><i class="material-icons">more_vert</i></a>
+                </div>
+                {% if m.descP =="" %}
+                    <img class="post-image" src="{{ asset('uploads/images/' ~ m.image) }}" style="width:100%;" alt="">
+                {% else %}
+                    <p>
+
+                        {{ m.descP }}
+
+
+                    </p>
+                {% endif %}
+                <div class="reactions">
+                    <a href="#" class="reactions-elements"><i class="material-icons left icons" style="margin-right:5px;">favorite</i>80M</a>
+                    <a href="#" class="reactions-elements"><i class="material-icons left icons" style="margin-right:5px;">comment</i>14.5K</a>
+                    <a href="#" class="reactions-elements"><i class="material-icons left icons" style="margin-right:5px;">share</i>14.01M</a>
+                    <a class="reactions-elements1" href="#">
+                        ouvrir
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+    <div class="col s12 m3 l3">
+        <div style="margin-top:1.5rem;">
+            <div class="card profile-matter1">
+                <div class="suggestions-list" style="padding:1rem;">
+                    <h6 style="font-weight:900;text-transform:uppercase;">Activity</h6>
+                    <hr class="line1">
+                    <div class="list-buddy">
+                        <img class="dp img" src="http://uog.edu.pk/uog/img/dummy_profile.png" alt="">
+                        <p class="sug-name1"><strong>Douglas Davis</strong> posted a photo</p>
+                    </div>
+                    <div class="list-buddy">
+                        <img class="dp img" src="http://uog.edu.pk/uog/img/dummy_profile.png" alt="">
+                        <p class="sug-name1"><strong>Amal Shaju</strong> shared a new page</p>
+                    </div>
+                    <div class="list-buddy">
+                        <img class="dp img" src="http://uog.edu.pk/uog/img/dummy_profile.png" alt="">
+                        <p class="sug-name1"><strong>Alex Joseph</strong> created a new page</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dropdown Structure -->
+<ul id='dropdown1' class='dropdown-content'>
+    <li><a href="#!">Profile</a></li>
+    <li><a href="#!">Settings</a></li>
+    <li><a href="#!">Log out</a></li>
+</ul>
+<!-- Dropdown Structure -->
+<ul id='dropdown2' class='dropdown-content'>
+    <li><a href="#!">Save</a></li>
+    <li><a href="#!">Tag Friends</a></li>
+</ul>
+
+<!-- Content Ends here -->
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#p2").hide();
+        $("#p1").hide();
+        $('.tooltipped').tooltip({delay: 50});
+
+        $( "#ps" ).click(function() {
+            $("#zouz").hide();
+            $("#p1").show();
+            $("#p2").hide();
+        });
+        $( "#pi" ).click(function() {
+            $("#zouz").hide();
+            $("#p2").show();
+            $("#p1").hide();
+
+        });
+
+
+    });
+</script>
+</html>

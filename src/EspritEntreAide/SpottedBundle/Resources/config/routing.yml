@@ -1,0 +1,108 @@
+spotted_homepage:
+    path:     /
+    defaults: { _controller: SpottedBundle:Default:index }
+
+spotted_homepage2:
+    path:     /index
+    defaults: { _controller: SpottedBundle:Default:anonymeImage }
+
+
+_spotted_test:
+    path:     /spottedtest
+    defaults: { _controller: SpottedBundle:Default:index }
+
+_ajout_spotted:
+    path:     /ajout_spotted
+    defaults: { _controller: SpottedBundle:Default:ajout }
+
+
+_list_spotted:
+    path:     /list
+    defaults: { _controller: SpottedBundle:Default:listSpotted }
+
+_list_all_spotted:
+    path:     /listallSpotted
+    defaults: { _controller: SpottedBundle:Default:listAllSpotted }
+
+
+_modifier_spotted:
+    path: /modif/{id}
+    defaults: { _controller: SpottedBundle:Default:modifSpotted }
+
+_delete_spotted:
+    path: /supprimer/{id}
+    defaults: { _controller: SpottedBundle:Default:deleteSpotted }
+
+
+_spotted_content:
+    path:     /content/{id}
+    defaults: { _controller: SpottedBundle:Default:contentSpotted }
+
+_edit_comment_spotted:
+    path:     /editcomment/{id}
+    defaults: { _controller: SpottedBundle:Default:editCommentSpotted }
+
+_delete_comment_spotted:
+    path:     /deletecomment/{id}
+    defaults: { _controller: SpottedBundle:Default:deleteCommentSpotted }
+
+_recherche_spotted:
+    path:     /recherchespotted
+    defaults: { _controller: SpottedBundle:Default:Recherche }
+
+
+_type_publication_spotted:
+    path:     /choose_spotted_type
+    defaults: { _controller: SpottedBundle:Default:ChooseType }
+
+
+_ajout_spotted_image:
+    path:     /addSpottedPicture
+    defaults: { _controller: SpottedBundle:Default:ajoutPicture }
+
+
+_test_id:
+    path:     /test_id
+    defaults: { _controller: SpottedBundle:Default:foo }
+
+_test_anonyme:
+    path:     /anonyme/{id}
+    defaults: { _controller: SpottedBundle:Default:anonyme }
+
+
+_spotted_content:
+    path:     /content/{id}
+    defaults: { _controller: SpottedBundle:Default:contentSpotted }
+
+
+
+
+_recherche_spotted_ajax:
+    path:     /RechercheSpotted
+    defaults: { _controller: SpottedBundle:Default:RechercheSpotted }
+
+
+
+
+_test_anonyme_image:
+    path:     /index
+    defaults: { _controller: SpottedBundle:Default:anonymeImage }
+
+_test_add_rating:
+    path:     /anonymeImage/{entity}
+    defaults: { _controller: SpottedBundle:Default:anonymeImageRating }
+
+
+_carousel:
+    path:     /carrousel
+    defaults: { _controller: SpottedBundle:Default:carrousel }
+
+
+_load_more:
+    path:     /loadmore
+    defaults: { _controller: SpottedBundle:Default:load }
+
+
+_testautocomplete:
+    path:     /auto
+    defaults: { _controller: SpottedBundle:Default:auto }

@@ -1,0 +1,19 @@
+user_homepage:
+    path:     /
+    defaults: { _controller: AppBundle:Default:admin }
+
+_admin:
+    path:     /admin
+    defaults: { _controller: AppBundle:Default:admin }
+_add_user:
+    path:     /adduser
+    defaults: { _controller: UserBundle:Default:addUser }
+_update_user:
+    path:     /updateuser
+    defaults: { _controller: UserBundle:Default:updateUser }
+_afficher_user:
+    path:     /afficherusers
+    defaults: { _controller: UserBundle:Default:afficherUser }
+_supprimer_user:
+    path:     /supprimerusers
+    defaults: { _controller: UserBundle:Default:supprimerUser }

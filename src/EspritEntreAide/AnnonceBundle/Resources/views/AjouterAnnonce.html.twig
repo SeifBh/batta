@@ -1,0 +1,94 @@
+{% extends ":default:test.html.twig" %}
+
+
+{% block title %}Annonces{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #336699; }
+        .big-div{
+            padding: 8px !important;
+        }
+        .pos{
+            background-color: #eee;
+            margin: 5% auto 15% auto;
+            border: 1px solid #888;
+            width: 62%;
+            border-radius: 10px;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div id="mySidenav" class="sidenav">
+        <link rel="stylesheet" href="{{ asset('css/style_indexAnnonce.css') }}">
+        <a id="Ajouter" href={{ path('annonce_homepage')}}>Liste des annonces</a>
+        <a  id="Chercher" href={{ path('_annonce_chercher')}}>Chercher une annonce</a>
+    </div>
+    <div class="big-div">
+        </h1><a href="{{ path('_annonce_ajouter') }}">Ajouter une annonce</a></h1>
+    </div>
+    {% if (is_granted('ROLE_RESPONSABLE_SUPER_ADMIN'))
+        or(is_granted('ROLE_SUPER_ADMIN'))
+        or(is_granted('ROLE_ADMIN'))
+        or(is_granted('ROLE_ETUDIANT'))
+        or(is_granted('ROLE_ENSEIGNANT'))
+        or(is_granted('ROLE_RESPONSABLE_CLUB'))
+        or(is_granted('ROLE_RESPONSABLE_STORE'))
+    %}
+
+        <p class="important">
+
+        </p>
+        <div class="pos">
+            <table border="2" class="table table-bordered table-hover " >
+
+                {{ form_start(form) }}
+                {{ form_errors(form) }}
+
+                <div class="form-group has-feedback">
+                    {{ form_label(form.titreA,'Titre') }}
+                    {{ form_errors(form.titreA) }}
+                    {{ form_widget(form.titreA,{'attr': {'class': 'form-control','placeholder': "titre de l'annonce"}}) }}
+                    <span class="glyphicon  form-control-feedback"></span>
+                </div>
+
+                <div class="form-group has-feedback">
+                    {{ form_label(form.categorieA ,'Categorie')}}
+                    {{ form_errors(form.categorieA) }}
+                    {{ form_widget(form.categorieA,{'attr': {'class': 'form-control','placeholder': "permutation,objet perdue,collecation,cours ..." }}) }}
+                    <span class="glyphicon  form-control-feedback"></span>
+                </div>
+
+                <div class="form-group has-feedback">
+                    {{ form_label(form.descA ,'Description')}}
+                    {{ form_errors(form.descA) }}
+                    {{ form_widget(form.descA,{'attr': {'class': 'form-control','placeholder': "la description de votre annonce"}}) }}
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+
+                <div class="form-group has-feedback">
+                    {{ form_label(form.numTel ,'Numero de telephone')}}
+                    {{ form_errors(form.numTel) }}
+                    {{ form_widget(form.numTel,{'attr': {'class': 'form-control','placeholder': "votre numero" }}) }}
+                    <span class="glyphicon  form-control-feedback"></span>
+                </div>
+
+                {{ form_widget(form.Ajouter,{'attr': {'class': 'btn btn-primary'}}) }}
+
+
+
+
+                {{ form_end(form) }}
+
+            </table>
+            <span style="alignment: right"></span>
+        </div>
+
+
+
+
+    {% else %}
+        <center><h1>You should <a href="{{ path('fos_user_security_login') }}">Login</a> or <a href="{{ path('fos_user_registration_register') }}">Register</a> :) </h1></center>
+    {% endif %}
+
+{% endblock %}

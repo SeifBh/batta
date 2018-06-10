@@ -1,0 +1,140 @@
+{% extends ":default:test.html.twig" %}
+
+
+{% block title %}Liste des demandes{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #336699; }
+
+    </style>
+{% endblock %}
+{% block content %}
+<h1>liste des demandes</h1>
+    {% for type, flashes in app.session.flashbag.all %}
+        {% for flash in flashes %}
+            <div class="alert alert-{{ type }} fade in">
+                {{ flash }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    Rechercher demande :
+    <input type="text" placeholder="enseignant" onkeyup="search()" id="teacher">
+    <input type="text" placeholder="date d'ajout" onkeyup="search()" id="date"><br>
+    <p style="float: right">Nombre de demande en attente : {{ countDemandes }} demandes</p>
+<table class="table">
+    <tr>
+        <th>id</th>
+        <th>nombre copies</th>
+        <th>date d'ajout</th>
+        <th>deadline</th>
+        <th>store</th>
+        <th>enseignant</th>
+        <th>etat</th>
+        <th>changer etat</th>
+        <th>supprimer</th>
+        <th>document</th>
+    </tr>
+    <tbody id="table">
+    {% for demande in demandes %}
+        <tr>
+            <td>{{ demande.id }}</td>
+            <td>{{ demande.nbrCopie }}</td>
+            <td>{{ demande.dateCreation|date('Y-m-d') }}</td>
+            <td>{{ demande.deadLine|date('Y-m-d H:i:s') }}</td>
+            <td>{{ demande.idStore.nomStore }}</td>
+            <td>{{ demande.idUser.username }}</td>
+            <td>
+                {% if demande.etatDemande=="" %}
+                    En attente
+                {% else %}
+                    {{ demande.etatDemande }}
+                {% endif %}
+            </td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">Changer etat
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('demande_etat',{'id':demande.id,'etat':'En attente'}) }}">En attente</a></li>
+                        <li><a href="{{ path('demande_etat',{'id':demande.id,'etat':'En cours'}) }}">En cours</a></li>
+                        <li><a href="{{ path('demande_etat',{'id':demande.id,'etat':"Prête"}) }}">Prête</a></li>
+                    </ul>
+                </div>
+               </td>
+            <td><a href="{{ path('demande_remove',{'id':demande.id}) }}">supprimer</a></td>
+            <td><a href="{{ path('demande_detail',{'id':demande.id}) }}">document</a></td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    {{ knp_pagination_render(demandes) }}
+{% endblock %}
+
+{% block script %}
+    {{ parent() }}
+    <script>
+        function formatDate(date) {
+            var monthNames = [
+                "January", "February", "March",
+                "April", "May", "June", "July",
+                "August", "September", "October",
+                "November", "December"
+            ];
+
+            var day = date.getDate();
+            var monthIndex = date.getMonth();
+            var year = date.getFullYear();
+
+            return   year + "-"+(monthIndex+1)+"-"+day;
+        }
+        function search() {
+            $.ajax({
+                url: "{{ path('demande_search_store') }}",
+                method: "POST",
+                data: "date="+ $("#date").val()+"&teacher="+$("#teacher").val(),
+                success: function (data) {
+                    $("#table").html("");
+                    $.each(data,function (index,element) {
+                        pathEtatEnAttente="{{ path('demande_etat',{'id':'demandeId','etat':'En attente'}) }}";
+                        pathEtatEnAttente=pathEtatEnAttente.replace('demandeId',element.id);
+                        pathEtatEnCours="{{ path('demande_etat',{'id':'demandeId','etat':'En cours'}) }}";
+                        pathEtatEnCours=pathEtatEnCours.replace('demandeId',element.id);
+                        pathEtatPrete="{{ path('demande_etat',{'id':'demandeId','etat':"Prête"}) }}";
+                        pathEtatPrete=pathEtatPrete.replace('demandeId',element.id);
+                        pathRemove="{{ path('demande_remove',{'id':"demandeId"}) }}";
+                        pathRemove=pathRemove.replace('demandeId',element.id);
+                        pathDetail="{{ path('demande_detail',{'id':'demandeId'}) }}";
+                        pathDetail=pathDetail.replace('demandeId',element.id);
+                        $("#table").append(`
+                        <tr>
+                        <td>`+element.id+`</td>
+                        <td>`+element.nbrCopie+`</td>
+                        <td>`+formatDate(new Date(element.dateCreation.date))+`</td>
+                        <td>`+element.nomStore+`</td>
+                        <td>`+element.nomStore+`</td>
+                        <td>`+element.username+`</td>
+                        <td>`+element.etatDemande+`</td>
+                        <td>
+                <div class="dropdown">
+                    <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown">Changer etat
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="`+pathEtatEnAttente+`">En attente</a></li>
+                        <li><a href="`+pathEtatEnCours+`">En cours</a></li>
+                        <li><a href="`+pathEtatPrete+`">Prête</a></li>
+                    </ul>
+                </div>
+               </td>
+            <td><a href="`+pathRemove+`">supprimer</a></td>
+            <td><a href="`+pathDetail+`">document</a></td>
+</tr>
+                        `);
+
+                    })
+                }
+            })
+        }
+    </script>
+{% endblock script %}

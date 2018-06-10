@@ -1,0 +1,156 @@
+
+{% include "admin/partial/top-header.html.twig" %}
+
+<div class="main-container ace-save-state" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.loadState('main-container')}catch(e){}
+    </script>
+
+    {% include "admin/partial/sidebar.html.twig" %}
+
+    <div class="main-content">
+        <div class="main-content-inner">
+            {% include "admin/partial/breadcrumbs.html.twig" %}
+
+
+
+            <div class="page-content">
+                <div class="ace-settings-container" id="ace-settings-container">
+                    <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
+                        <i class="ace-icon fa fa-cog bigger-130"></i>
+                    </div>
+
+                    <div class="ace-settings-box clearfix" id="ace-settings-box">
+                        <div class="pull-left width-50">
+                            <div class="ace-settings-item">
+                                <div class="pull-left">
+                                    <select id="skin-colorpicker" class="hide">
+                                        <option data-skin="no-skin" value="#438EB9">#438EB9</option>
+                                        <option data-skin="skin-1" value="#222A2D">#222A2D</option>
+                                        <option data-skin="skin-2" value="#C6487E">#C6487E</option>
+                                        <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+                                    </select>
+                                </div>
+                                <span>&nbsp; Choose Skin</span>
+                            </div>
+
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-navbar" autocomplete="off" />
+                                <label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
+                            </div>
+
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-sidebar" autocomplete="off" />
+                                <label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
+                            </div>
+
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-breadcrumbs" autocomplete="off" />
+                                <label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
+                            </div>
+
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" autocomplete="off" />
+                                <label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
+                            </div>
+
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-add-container" autocomplete="off" />
+                                <label class="lbl" for="ace-settings-add-container">
+                                    Inside
+                                    <b>.container</b>
+                                </label>
+                            </div>
+                        </div><!-- /.pull-left -->
+
+                        <div class="pull-left width-50">
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover" autocomplete="off" />
+                                <label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
+                            </div>
+
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact" autocomplete="off" />
+                                <label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
+                            </div>
+
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight" autocomplete="off" />
+                                <label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
+                            </div>
+                        </div><!-- /.pull-left -->
+                    </div><!-- /.ace-settings-box -->
+                </div><!-- /.ace-settings-container -->
+                <div class="page-header">          <!--*********************************************************************-->
+                    <h1>
+                        Ajout annonce
+
+                        <table border="2" class="table table-bordered table-hover " >
+
+                            {{ form_start(form) }}
+                            {{ form_errors(form) }}
+
+                            <div class="form-group has-feedback">
+                                {{ form_label(form.titreA,'Titre') }}
+                                {{ form_errors(form.titreA) }}
+                                {{ form_widget(form.titreA,{'attr': {'class': 'form-control','placeholder': "titre de l'annonce"}}) }}
+                                <span class="glyphicon  form-control-feedback"></span>
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                {{ form_label(form.categorieA ,'Categorie')}}
+                                {{ form_errors(form.categorieA) }}
+                                {{ form_widget(form.categorieA,{'attr': {'class': 'form-control','placeholder': "permutation,objet perdue,collecation,cours ..." }}) }}
+                                <span class="glyphicon  form-control-feedback"></span>
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                {{ form_label(form.descA ,'Description')}}
+                                {{ form_errors(form.descA) }}
+                                {{ form_widget(form.descA,{'attr': {'class': 'form-control','placeholder': "la description de votre annonce"}}) }}
+                                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                {{ form_label(form.numTel ,'Numero de telephone')}}
+                                {{ form_errors(form.numTel) }}
+                                {{ form_widget(form.numTel,{'attr': {'class': 'form-control','placeholder': "votre numero" }}) }}
+                                <span class="glyphicon  form-control-feedback"></span>
+                            </div>
+
+                            {{ form_widget(form.Ajouter,{'attr': {'class': 'btn btn-primary'}}) }}
+
+
+
+
+                            {{ form_end(form) }}
+
+                        </table>
+                        <span style="alignment: right"></span>
+                    </h1>
+                </div><!-- /.page-header -->
+                <fieldset>
+
+
+
+
+                </fieldset>
+                                                               <!--*********************************************************************-->
+
+            </div>
+        </div>
+    </div>
+
+
+    {% include "admin/partial/footer.html.twig" %}
+
+
+
+
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->
+
+

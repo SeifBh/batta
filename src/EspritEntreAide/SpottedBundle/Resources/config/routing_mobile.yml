@@ -1,0 +1,70 @@
+_affiche_publication:
+    path:     /affiche_publication2
+    defaults: { _controller: SpottedBundle:Default:affichePublication }
+
+_afficheT_publication:
+    path:     /affiche_publication2T
+    defaults: { _controller: SpottedBundle:Default:affichePublicationByImage }
+
+json_test:
+    path:     /json_test
+    defaults: { _controller: SpottedBundle:Default:jsonTest }
+
+
+
+_affiche_texto_publication:
+    path:     /affiche_publication2_texto
+    defaults: { _controller: SpottedBundle:Default:affichePublicationByPublication }
+
+_find_publication:
+    path:     /find_publication/{id}
+    defaults: { _controller: SpottedBundle:Default:findPublication }
+
+_ajout_publication:
+    path:     /ajout_publication
+    defaults: { _controller: SpottedBundle:Default:ajoutPublication }
+
+_modif_publication:
+    path:     /modif_publication/{id}
+    defaults: { _controller: SpottedBundle:Default:modifPublication }
+
+
+_spp_publication:
+    path:     /supp_publication/{id}
+    defaults: { _controller: SpottedBundle:Default:suppPublication }
+
+_test_publication:
+    path:     /suppressionPublication/{id}
+    defaults: { _controller: SpottedBundle:Default:suppressionPublication }
+
+
+_ajout_commentaire_publication:
+    path:     /ajoutcommentaire/{id}
+    defaults: { _controller: SpottedBundle:Default:ajoutCommentaire }
+
+_afficher_commentaire_publication:
+    path:     /afficherCommentaire/{id}
+    defaults: { _controller: SpottedBundle:Default:afficheCommentaire }
+
+
+_modif_commentaire_publication:
+    path:     /modifCommentaire/{id}
+    defaults: { _controller: SpottedBundle:Default:modifCommentaire }
+
+_supp_commentaire_publication:
+    path:     /suppCommentaire/{id}
+    defaults: { _controller: SpottedBundle:Default:suppCommentaire }
+
+
+_ajout_rating:
+    path:     /ajoutRating
+    defaults: { _controller: SpottedBundle:Default:ajoutRating }
+
+
+_affiche_rating:
+    path:     /afficheRating
+    defaults: { _controller: SpottedBundle:Default:afficheRating }
+
+
+
+

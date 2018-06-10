@@ -1,0 +1,324 @@
+.column, .columns {
+    -webkit-flex: 1 1 0px;
+    -ms-flex: 1 1 0px;
+    flex: 1 1 0px;
+    padding-right: 0.625rem;
+    padding-left: 0.625rem;
+    min-width: initial;
+}
+@media print, screen and (min-width: 40em){
+    .medium-2 {
+        -webkit-flex: 0 0 16.66667%;
+        -ms-flex: 0 0 16.66667%;
+        flex: 0 0 16.66667%;
+        max-width: 16.66667%;
+    }
+}
+
+@media print, screen and (min-width: 40em){
+    .column, .columns {
+        padding-right: 0.9375rem;
+        padding-left: 0.9375rem;
+    }
+}
+.column, .columns {
+    -webkit-flex: 1 1 0px;
+    -ms-flex: 1 1 0px;
+    flex: 1 1 0px;
+    padding-right: 0.625rem;
+    padding-left: 0.625rem;
+    min-width: initial;
+}
+.menu-icon {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 16px;
+    cursor: pointer;
+}
+.menu-icon {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 16px;
+    cursor: pointer;
+}
+.app-dashboard-logo {
+    color: #fefefe;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.app-dashboard-top-nav-bar .menu-icon {
+    vertical-align: text-bottom;
+}
+
+
+
+
+
+
+input[type='search'] {
+    box-sizing: border-box;
+}
+
+.app-dashboard-search {
+    background: #41525e;
+    border: 0;
+    margin-bottom: 0;
+    color: #fefefe;
+}
+
+
+.shrink {
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    max-width: 100%;
+}
+
+
+
+.app-dashboard-search-bar-container {
+    position: relative;
+}
+
+
+
+/****************************************************/
+
+
+
+
+
+.tabsHeader {
+    height: 51px;
+}
+
+.clearfix::after, .line::after {
+    content: "";
+    display: table;
+    clear: both;
+    border-collapse: collapse;
+}
+.tabsHeader nav {
+    border-top: 1px solid #ccc;
+}
+
+
+
+.tabsSwitch:first-child {
+    border-left: 1px solid #ccc;
+}
+
+.tabsSwitch.active {
+    border-bottom: 1px solid #fff;
+}
+
+.tabsSwitch:hover, .tabsSwitch.active, .tabsSwitch:focus {
+    color: #f56b2a;
+    background: #fff;
+}
+
+
+.link.active, .link-like.active, a.active {
+    color: #f56b2a;
+}
+
+.tabsSwitch {
+    display: block;
+    float: left;
+    height: 50px;
+    padding: 0 10px;
+
+    line-height: 49px;
+    text-align: center;
+    font-size: 14px;
+    font-size: 1.4rem;
+    color: #1a1a1a;
+    background: #e6e6e6;
+    font-family: "OpenSansSemiBold",sans-serif;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+
+
+
+.list_properties {
+    float: right;
+}
+
+
+
+
+
+
+/**************************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+.list_item {
+    position: relative;
+    display: block;
+    padding: 15px;
+    padding: 1.5rem;
+    border-bottom: 1px solid #ccc;
+    -webkit-transition: background,0.3s;
+    -moz-transition: background,0.3s;
+    transition: background,0.3s;
+    overflow: hidden;
+}
+
+
+
+.item_image, .oas-nativ-ads .oas-link .oas-nativ-ad .oas-product-picture {
+    position: relative;
+    overflow: hidden;
+    float: left;
+    width: 25%;
+    min-width: 130px;
+    min-height: 120px;
+    max-height: 100%;
+    background: #f2f2f2;
+}
+
+.item_imagePic {
+    display: block;
+    height: 100%;
+    min-height: 120px;
+    text-align: center;
+    line-height: 120px;
+}
+
+.item_image img, .oas-nativ-ads .oas-link .oas-nativ-ad .oas-product-picture img {
+    max-height: 100%;
+    margin: 0 auto;
+}
+:not(.gm-style) img {
+    height: auto;
+}
+
+img:not([src$=".svg"]) {
+    height: auto;
+}
+
+.list_item:visited {
+    color: #936 !important;
+}
+
+.link, .link-like, a {
+    /* color: #369; */
+    -webkit-transition: all,0.3s;
+    -moz-transition: all,0.3s;
+    transition: all,0.3s;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+}
+
+p, .p-like, ul, ol, dl, blockquote, pre, td, th, label, textarea, caption, details, figure {
+    margin-top: 0.75em;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.item_imageNumber {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+}
+
+.list_item .saveAd {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 99;
+}
+
+
+.item_infos, .oas-nativ-ads .oas-link .oas-nativ-ad .detail {
+    position: relative;
+    float: left;
+    width: 75%;
+    padding: 0 0 0 20px;
+    padding: 0 0 0 2rem;
+}
+
+@media (min-width: 769px){
+    .saveAd+.item_infos>h2.item_title, .oas-nativ-ads .oas-link .oas-nativ-ad .saveAd+.detail>h2.item_title, .oas-nativ-ads .oas-link .oas-nativ-ad .detail .saveAd+.item_infos>h2.oas-product-title, .oas-nativ-ads .oas-link .oas-nativ-ad .saveAd+.detail>h2.oas-product-title {
+        margin-right: 30px;
+        margin-right: 3rem;
+    }}
+.item_title, .oas-nativ-ads .oas-link .oas-nativ-ad .detail .oas-product-title {
+    margin-bottom: 10px;
+    margin-bottom: 1rem;
+    font-size: 16px;
+    font-size: 1.6rem;
+    font-family: "OpenSansSemiBold",sans-serif;
+}
+
+h2, .h2-like {
+    font-size: 1.6rem;
+    font-family: "OpenSansSemiBold",sans-serif;
+}
+
+li p, li .p-like, li ul, li ol {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+p, figure {
+    margin: 0;
+}
+
+p, .p-like, ul, ol, dl, blockquote, pre, td, th, label, textarea, caption, details, figure {
+    margin-top: 0.75em;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.item_supp, .oas-nativ-ads .oas-link .oas-nativ-ad .date, .oas-nativ-ads .oas-link .oas-nativ-ad .detail .oas-product-text {
+    color: #1a1a1a;
+}
+
+.item_price {
+    margin: 10px 0 0 0;
+    margin: 1rem 0 0 0;
+    font-size: 20px;
+    font-size: 2rem;
+    color: #f56b2a;
+    font-family: "OpenSansBold",sans-serif;
+}
+
+.list .item_price {
+    margin-bottom: 0;
+}
+
+.item_absolute {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.item_absolute {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

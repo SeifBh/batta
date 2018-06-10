@@ -1,0 +1,150 @@
+{% extends ":default:test.html.twig" %}
+
+
+{% block title %}Evenements{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #336699; }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <body>
+
+
+    <div class="big-div">
+        <h1>Bienvenue dans l'interface de gestion des évenements </h1>
+    </div>
+    <br>
+
+    <div class="gallery" id="gallery">
+        <div class="container">
+            <div class="about-head text-center ">
+                <h3>La galerie des évènements</h3>
+            </div>
+            <a class="btn btn-primary" href="{{ path('_ajouter_events') }}">Ajouter un évènement</a>
+            <a class="btn btn-primary" href="{{ path('_afficher_events_passer') }}">Afficher les évènements passés</a>
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <a class="btn btn-primary" href="{{ path('afficherParticipations') }}">Afficher les évènements auxquels je participe</a>
+            {% endif %}
+            <hr>
+            <a class="btn btn-primary" href="{{ path('evenement_homepage') }}"><i class="fas fa-th-large"></i></a>
+            <a class="btn btn-primary" href="{{ path('_afficher_events') }}"><i class="fas fa-list-ul"></i></a>
+            <hr>
+
+            <h1 style="color: #00BBE2">Il existe {{ nbr }} évenements à venir :</h1>
+            <table class="table table table-striped table-bordered table-hover" id="editable-sample">
+                <thead>
+                <tr>
+                    <th> Id </th>
+                    <th> Image </th>
+                    <th> Titre </th>
+                    <th> Description </th>
+                    <th> Date </th>
+                    <th> Type </th>
+                    <th> Adresse </th>
+                    <th> Modifier </th>
+                    <th> Supprimer </th>
+                    <th> Participer </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for evt in evts %}
+                    <tr>
+                        <td> {{ evt.id }}</td>
+                        {% if ( app.user == evt.idUser and (date(evt.dateE) > date('+3days')))
+                        or is_granted('ROLE_RESPONSABLE_SUPER_ADMIN')
+                        or is_granted('ROLE_ADMIN')
+                        or is_granted('ROLE_SUPER_ADMIN') %}
+                        <td> <img src="{{ asset('uploads/images/' ~ evt.image) }}" height="100px" width="250px"><br>
+                            <a  href="{{ path('_modifier_img_event',{'id':evt.id }) }}" class="btn btn-primary">Modifier l'image</a>  </td>
+                        {% else %}
+                        <td> <img src="{{ asset('uploads/images/' ~ evt.image) }}" height="100px" width="250px"><br>
+                            <a  href="{{ path('_modifier_img_event',{'id':evt.id }) }}" class="btn btn-primary" disabled="true">Modifier l'image</a>  </td>
+                        {% endif %}
+                        <td>{{ evt.titreE }}</td>
+                        <td>{{ evt.descE }}</td>
+                        <td>{{ evt.dateE | date('d-m-y H:i') }}</td>
+                        <td>{{ evt.typeE }}</td>
+                        {% if ( app.user == evt.idUser and (date(evt.dateE) > date('+3days')))
+                        or is_granted('ROLE_RESPONSABLE_SUPER_ADMIN')
+                        or is_granted('ROLE_ADMIN')
+                        or is_granted('ROLE_SUPER_ADMIN') %}
+                        <td>{{ evt.googlemaps['address'] }}<br><br>
+                            <a  href="{{ path('modifier_adresse_event',{'id':evt.id }) }}" class="btn btn-primary">Modifier l'adresse</a></td>
+                        {% else %}
+                        <td>{{ evt.googlemaps['address'] }}<br><br>
+                            <a  href="{{ path('modifier_adresse_event',{'id':evt.id }) }}" class="btn btn-primary" disabled="true">Modifier l'adresse</a></td>
+                        {% endif %}
+
+                        {% if ( app.user == evt.idUser and (date(evt.dateE) > date('+3days')))
+                        or is_granted('ROLE_RESPONSABLE_SUPER_ADMIN')
+                        or is_granted('ROLE_ADMIN')
+                        or is_granted('ROLE_SUPER_ADMIN')
+                        %}
+                        <td><a class="edit" href="javascript:;"> Modifier </a></td>
+                        <td><a class="delete" href="javascript:;"> Supprimer </a></td>
+                        {% else %}
+                        <td><a class="btn" href="javascript:;" disabled="true"> Modifier </a></td>
+                        <td><a class="btn" href="javascript:;" disabled="true"> Supprimer </a></td>
+                        {% endif %}
+
+                        {% set a=1 %}
+                        {% if not app.user %}
+                            <td><A class="btn" HREF="{{ path('_participer_events',{'id':evt.id }) }}"  disabled="true">Participer </A></td>
+                        {% else %}
+                            {% for p in evt.participants %}
+                                {% if p.id == app.user.id %}
+                                {% set a=0 %}
+                                <td><A HREF="{{ path('ne_pas_participer_events',{'id':evt.id }) }}" > Ne pas Participer </A></td>
+                                 {% endif %}
+                            {% endfor %}
+                        {% if a==1 %}
+                        <td><A class="btn" HREF="{{ path('_participer_events',{'id':evt.id }) }}" >Participer </A></td>
+                        {% endif %}
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+            <script src="{{ asset('js/lightbox-plus-jquery.min.js') }}"></script>
+        </div>
+    </div>
+
+
+
+
+
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link  href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style-table.css') }}" rel="stylesheet">
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+
+    <script src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+    <script src="{{ asset('js/jquery-ui-1.9.2.custom.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-migrate-1.2.1.min.js') }}"></script>
+
+    <!--data table-->
+    <script type="text/javascript" src="{{ asset('js/data-tables/jquery.dataTables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/data-tables/DT_bootstrap.js') }}"></script>
+
+    <!--script for editable table-->
+    <script src="{{ asset('js/editable-tableF.js') }}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            EditableTable.init();
+        });
+    </script>
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a>
+</body>
+{% endblock %}

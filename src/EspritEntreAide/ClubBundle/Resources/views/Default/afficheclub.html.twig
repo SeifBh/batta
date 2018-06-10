@@ -1,0 +1,337 @@
+{% extends ":default:test.html.twig" %}
+
+
+{% block title %}Clubs{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #991e46; }
+        * {box-sizing: border-box;}
+
+        .wrapper {
+            border: 2px solid #f6fffa;
+            border-radius: 5px;
+            background-color: #fefff9;
+        }
+
+        .wrapper > div {
+            table-layout: inherit;
+            border: 2px solid #ff9f6f;
+            border-radius: 5px;
+            background-color: #ff9f6f;
+            padding: 1em;
+            color: #010107;
+        }
+        .wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+        }
+
+        div.gallery {
+            margin: 5px;
+            border: 1px solid #fefff9;
+            float: left;
+            width: 180px;
+        }
+
+        div.gallery:hover {
+            border: 1px solid #777;
+        }
+
+        div.gallery img {
+            width: 100%;
+            height: auto;
+        }
+
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="big-div">
+        <h1>La Liste Des Clubs</h1>
+    </div>
+    <center>
+
+        {{ form_start(form) }}
+
+        <script src="{{  asset('jquery-3.2.1.min.js') }}"></script>
+
+
+        <script type="text/javascript">
+            $(function(){
+                $("#espritentreaide_clubbundle_club_nomC").keyup(
+                    function(){
+                        abcd =  $("#espritentreaide_clubbundle_club_nomC").val();
+                        DATA = 's='+abcd;
+                        //alert(abcd);
+                        $.ajax({
+
+                            url : '{{ path("club_affiche") }}',
+                            data:DATA,
+
+                            success : function(response){
+                                $(".wrapper").hide();
+                                $("#a5").html(
+                                    "<table id='tab' border='1'>" +
+
+                                    "</table>"
+                                );
+                                $.each(response,function(k,el){
+
+                                    $('#a5').append(
+                                        "<table id='tab1' border='2'>" +
+
+                                        "<tr>" +
+                                        "<th> Id de club</th>"+
+                                        "<th>"+el.id+"</th>"+
+                                        "</tr>"+
+
+                                        "<tr>" +
+                                        "<th> Nom de club</th>"+
+                                        "<th>"+el.nomC+"</th>"+
+                                        "</tr>"+
+
+                                        "<tr>" +
+                                        "<th> mail de club</th>"+
+                                        "<th>"+el.mailC+"</th>"+
+                                        "</tr>"+
+
+                                        "<tr>" +
+                                        "<th> Nombre de membres</th>"+
+                                        "<th>"+el.nbmemb+"</th>"+
+                                        "</tr>"+
+
+                                        "<tr>" +
+                                        "<th> Image</th>"+
+                                        "<th> <img src='http://localhost/pidev-final/web/uploads/images/"+el.image+" ' width='60px' height='60px' > </th>"+
+                                        "</tr>"+
+
+
+
+
+                                        "<tr>" +
+                                        "<th> -----</th>"+
+                                        "<th>------</th>"+
+                                        "</tr>"+
+
+
+                                        "</tr>"
+                                    )
+                                })
+
+
+                            },
+                        })
+                    }
+
+                );
+            });
+        </script>
+        {{ form_end(form) }}
+
+
+
+
+        <div id="a5">.. </div>
+
+
+
+
+        <div class="row">
+            <div class="col-xs-12">
+
+                <div class="clearfix">
+                    <div class="pull-right tableTools-container"></div>
+                </div>
+
+
+                <!-- div.table-responsive -->
+
+
+
+                <div class="wrapper">
+                    {% for c in club %}
+
+                        <div>
+                            <table>
+                                <img src= " {{ asset ('uploads/images/' ~ c.image) }}" width="300" height="300" class="img-responsive zoom-img"  >
+
+                                <tr>
+                                    <th>ID club:</th>
+                                    <th>{{ c.Id}}</th>
+                                </tr>
+                                <tr><th><br></th></tr>
+
+
+
+
+
+                                <tr>
+                                    <th>nom club:</th>
+                                    <th>{{ c.nomC}}</th>
+                                </tr>
+
+                                <tr><th><br></th></tr>
+
+                                <tr>
+                                    <th>mail club:</th>
+                                    <th>{{ c.mailC}}</th>
+                                </tr>
+                                <tr><th><br></th></tr>
+
+
+
+
+                                <tr>
+                                    <th>date creation:</th>
+                                    <th>{{ c.dateCreation |date('d-m-y')}}</th>
+                                </tr>
+                                <tr><th><br></th></tr>
+
+
+
+
+                                <tr>
+                                    <th>R.club:   </th>
+                                    <th>{{ c.idUser}}</th>
+
+                                </tr>
+
+                                <tr><th><br></th></tr>
+
+                                <tr>
+                                    {% if is_granted('ROLE_RESPONSABLE_SUPER_ADMIN')
+                                    or is_granted('ROLE_ADMIN')
+                                    or is_granted('ROLE_SUPER_ADMIN') %}
+                                        <th>
+                                            supprimer
+                                        </th>
+                                    {% endif %}
+                                    {% if is_granted('ROLE_RESPONSABLE_SUPER_ADMIN')
+                                    or is_granted('ROLE_ADMIN')
+                                    or is_granted('ROLE_SUPER_ADMIN') %}
+                                        <th>
+                                            <a href="{{ path('club_supprime',{'id':c.id}) }}"><u>Supprimer</u></a>
+                                        </th>
+
+
+
+                                    {% endif %}
+
+                                </tr>
+
+
+                                <tr>
+                                    {% if app.user == c.idUser %}
+                                        <th>modifier</th>
+                                        <th><a href="{{ path('_club_modifier',{'id':c.id}) }}">Modifier</a></th>
+
+                                    {% endif %}
+
+
+
+                                    {% if is_granted('ROLE_RESPONSABLE_SUPER_ADMIN')
+                                    or is_granted('ROLE_ADMIN')
+                                    or is_granted('ROLE_SUPER_ADMwIN')
+                                    %}
+                                        <th>modifier</th>
+
+
+                                        <th><a href="{{ path('modifieradminclub',{'id':c.id}) }}">Modifier</a></th>
+
+                                    {% endif %}
+                                </tr>
+
+
+
+
+                                <tr>
+                                    <th>inscrit :</th>
+
+                                    {% set v=1 %}
+                                    {% for mcl in c.membres %}
+                                        {% if mcl.id==app.user.id %}
+                                            {% set v=0 %}
+                                            <th><a href="{{ path('_membre_desinscrit',{'id':c.id}) }}"> desabonner</a></th>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if v==1 %}
+                                        <th><a href="{{ path('_membre_isncrit',{'id':c.id}) }}"> s'abonner</a></th>
+                                    {% endif %}
+
+                                </tr>
+
+                                <tr><th><br></th></tr>
+
+                                <tr>
+
+                                    <th>les membres</th>
+
+                                    {% if is_granted('ROLE_RESPONSABLE_SUPER_ADMIN')
+                                    or is_granted('ROLE_ADMIN')
+                                    or is_granted('ROLE_SUPER_ADMIN')
+                                    or is_granted('ROLE_RESPONSABLE_CLUB')
+                                    %}
+
+                                        <th>
+
+                                            {% for mcl in c.membres %}
+                                                <table>
+                                                    {{ mcl.nom }}
+                                                    {{ mcl.prenom }},
+                                                </table>
+                                            {% endfor %}
+
+
+                                            en total {{ c.nbmemb }} Membres
+                                        </th>
+                                    {% else %}
+                                        <th>{{ c.nbmemb }} Membres</th>
+                                    {% endif %}
+
+                                </tr>
+
+                                <tr><th><br></th></tr>
+
+                                <tr>
+                                    <th>about:</th>
+                                    <th>   {{ c.descC}}</th>
+                                </tr>
+
+                            </table>
+
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+
+
+
+                <!-- div.dataTables_borderWrap -->
+            </div>
+        </div>
+
+
+
+
+        <span style="alignment: right"></span>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+        <!--data table-->
+
+        <!--script for editable table-->
+        <script src="{{ asset('js/editable-table.js') }}"></script>
+
+        <link rel="stylesheet" href="{{ asset('js/data-tables/DT_bootstrap.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style-table.css') }}" />
+        <br>
+        <br>
+        <br>
+
+    </center>
+    <p class="important">
+
+    </p>
+
+{% endblock %}

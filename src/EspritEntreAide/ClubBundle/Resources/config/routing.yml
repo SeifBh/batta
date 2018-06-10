@@ -1,0 +1,86 @@
+club_homepage:
+    path:     /
+    defaults: { _controller: ClubBundle:Default:index }
+
+
+
+club_ajout:
+    path:     /ajout
+    defaults: { _controller: ClubBundle:gererclub:Ajout }
+
+
+
+
+
+_club_modifier:
+    path:     /modifier{id}
+    defaults: { _controller: ClubBundle:gererclub:Modifier }
+
+modifieradminclub:
+    path:     /modifAdmin{id}
+    defaults: { _controller: ClubBundle:gererclub:ModifierAdmin }
+
+
+afficheadmin:
+    path:     /afficheadmin
+    defaults: { _controller: ClubBundle:gererclub:AfficheAdmin }
+club_affiche:
+    path:     /affiche
+    defaults: { _controller: ClubBundle:gererclub:Affiche }
+
+
+club_supprime:
+    path:     /Delete/{id}
+    defaults: { _controller: ClubBundle:gererclub:Delete }
+supp_admin_club:
+    path:     /Deleteadmin/{id}
+    defaults: { _controller: ClubBundle:gererclub:DeleteAdmin }
+
+
+
+_membre_isncrit:
+    path:     /inscrit/{id}
+    defaults: { _controller: ClubBundle:gererclub:ajouterMembres }
+
+_membre_isncrit_mobile:
+    path:     Clubs/inscrit/{id}/{idu}/
+    defaults: { _controller: ClubBundle:gererclub:ajouterMembresmobile }
+
+
+_membre_desinscrit:
+    path:     /desinscrit/{id}
+    defaults: { _controller: ClubBundle:gererclub:retirerMembres }
+
+_membre_desinscrit_mobile:
+    path:     Clubs/desinscrit/{id}/{idu}/
+    defaults: { _controller: ClubBundle:gererclub:retirerMembresMobile }
+
+
+_all:
+    path:     /Clubs/all
+    defaults: { _controller: ClubBundle:gererclub:All }
+
+_find_club:
+     path:     /Clubs/find/{id}
+     defaults: { _controller: ClubBundle:gererclub:find}
+
+create_task:
+    path:     /Clubs/new
+    defaults: { _controller: ClubBundle:gererclub:new}
+
+
+_supp_club:
+     path:     /Clubs/supp/{id}
+     defaults: { _controller: ClubBundle:gererclub:SuppClub}
+
+_modif_club:
+     path:     /Clubs/modif/{id}
+     defaults: { _controller: ClubBundle:gererclub:modifClub}
+
+
+_check_club:
+     path:     /Clubs/check
+     defaults: { _controller: ClubBundle:gererclub:checkMembreMobile}
+
+
+

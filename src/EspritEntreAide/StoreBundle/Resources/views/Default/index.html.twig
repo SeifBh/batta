@@ -1,0 +1,56 @@
+{% extends "admin/backbase.html.twig" %}
+
+{% block body %}
+Recherche store :
+        <input type="text" id="storeName" placeholder="nom de store" onkeyup="search()" name="storeName">
+        <input type="text" id="storeManager" placeholder="responsable de store" onkeyup="search()" name="storeManager">
+
+    <table class="table">
+        <tr>
+            <th>id</th>
+            <th>nom</th>
+            <th>editer</th>
+            <th>supprimer</th>
+        </tr>
+        <tbody id="table">
+            {% for store in stores %}
+                <tr>
+                <td>{{ store.id }}</td>
+                <td>{{ store.nomStore }}</td>
+                <td><a href="{{ path('store_edit',{'id':store.id}) }}">editer</a></td>
+                <td><a href="{{ path('store_remove',{'id':store.id}) }}">supprimer</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    {{ knp_pagination_render(stores) }}
+{% endblock %}
+
+{% block script %}
+{{ parent() }}
+    <script>
+        function search() {
+            $.ajax({
+                url: "{{ path('store_search') }}",
+                data: "storeName="+$("#storeName").val()+"&storeManager="+$("#storeManager").val() ,
+                method: "POST",
+                success: function (data) {
+                    $("#table").html("")
+                    $.each(data,function (index,element) {
+                        $("#table").append(`
+                        <tr>
+                        <td>`+element.id+`</td>
+                        <td>`+element.nomStore+`</td>
+                        <td>editer</td>
+                        <td>supprimer</td>
+</tr>
+                        `);
+                    })
+                }
+            });
+        }
+
+
+    </script>
+{% endblock script %}

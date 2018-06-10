@@ -1,0 +1,89 @@
+app:
+    path:     /
+    defaults: { _controller: AppBundle:Default:index }
+
+_spotted_bundle:
+    resource: "@SpottedBundle/Resources/config/routing.yml"
+    prefix:   /spotted_a
+
+_spotted_bundle_admin:
+    resource: "@SpottedBundle/Resources/config/routingadmin.yml"
+    prefix:   /account/admin/spotted
+
+_annonces_bundle:
+    resource: "@AnnonceBundle/Resources/config/routing.yml"
+    prefix:   /Annonces_a
+
+_spotted_bundle_mobile_routing:
+    resource: "@SpottedBundle/Resources/config/routing_mobile.yml"
+    prefix:   /mobile
+
+_events_bundle:
+    resource: "@EvenementBundle/Resources/config/routing.yml"
+    prefix:   /Events_a
+
+_events_bundle_admin:
+    resource: "@EvenementBundle/Resources/config/routingadmin.yml"
+    prefix:   /account/admin/events
+
+_clubs_bundle:
+    resource: "@ClubBundle/Resources/config/routing.yml"
+    prefix:   /Clubs_a
+
+
+
+_store_bundle:
+    resource: "@StoreBundle/Resources/config/routing.yml"
+    prefix:   /store_a
+
+
+_user_bundle:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /account/admin
+
+
+
+app88:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /account/admin
+
+
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+_test_bata:
+    path:     /try
+    defaults: { _controller: AppBundle:Default:try }
+
+
+
+_home_controller:
+    path:     /home
+    defaults: { _controller: AppBundle:Default:home }
+
+
+
+_content_controller:
+    path:     /content
+    defaults: { _controller: AppBundle:Default:content }
+
+
+_compte_controller:
+    path:     /compte
+    defaults: { _controller: AppBundle:Default:compte }
+
+_create_controller:
+    path:     /create
+    defaults: { _controller: AppBundle:Default:createAnnonce }
+
+
+
+
+
+
+
+

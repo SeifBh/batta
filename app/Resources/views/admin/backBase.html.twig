@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "admin/partial/header.html.twig" %}
+</head>
+
+<body class="no-skin">
+{% include "admin/partial/top-header.html.twig" %}
+<div class="main-container ace-save-state" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.loadState('main-container')}catch(e){}
+    </script>
+
+    {% include "admin/partial/sidebar.html.twig" %}
+
+    <div class="main-content">
+        <div class="main-content-inner">
+            {% include "admin/partial/breadcrumbs.html.twig" %}
+            {% block body %}{% endblock body %}
+        </div>
+    </div>
+</div>
+
+{% include "admin/partial/script.html.twig" %}
+
+{% block script %}{% endblock script %}
+</body>
+</html>

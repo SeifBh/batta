@@ -1,0 +1,22 @@
+{% extends ":default:test.html.twig" %}
+{% block title %}Detail Demande{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #336699; }
+
+    </style>
+{% endblock %}
+{% block content %}
+
+<div class="row">
+    {% for document in demande.document %}
+        <div class="col-md-6">
+            <iframe src="{{ asset('uploads/documents/images/'~document.id~'/'~document.file) }}"></iframe>
+        </div>
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends ":default:test.html.twig" %}
+
+
+{% block title %}Annonces{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #336699; }
+
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="big-div">
+        <h1><a href="{{ path('_affiche') }}">La liste des annonces</a></h1>
+    </div>
+    <div>
+            <ul class="snip1189">
+                <li><a href="{{ path('_annonce_ajouter') }}">Ajouter une annonce</a></li>
+                <li><a href={{ path('_annonce_chercher')}} >Chercher une annonce </a></li>
+            </ul>
+    </div>
+
+    <p class="important">
+
+    </p>
+    <div class="">
+        <table border="2" class="table table-bordered table-hover " >
+
+            <tr>
+                <th>categorie</th>
+                <th>titre</th>
+                <th>user</th>
+                <th>numero de telephone</th>
+                <th>Description</th>
+                <th>date de creation</th>
+            </tr>
+
+
+            {% for a in annonce %}
+                <tr>
+                    <td>{{ a.categorieA}}</td>
+                    <td>{{ a.titreA}}</td>
+                    <td>{{ a.idUser}}</td>
+                    <td>{{ a.numTel}}</td>
+                    <td>{{ a.descA}}</td>
+                    <td>{{ a.dateA|date}}</td>
+                </tr>
+            {% endfor %}
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="checkbox icheck">
+
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-4">
+                </div>
+                <!-- /.col -->
+            </div>
+
+        </table>
+        <span style="alignment: right"></span>
+    </div>
+
+{% endblock %}
